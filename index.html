@@ -1,39 +1,485 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sneak Clean</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sneak Clean | Cuida tus pasos</title>
+  <meta name="description" content="Marca mexicana dedicada al cuidado de sneakers. Solución no tóxica pensada para el mantenimiento continuo sin dañar sus materiales." />
   <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
+    :root {
+      --bg-1: #090816;
+      --bg-2: #13112a;
+      --panel: rgba(24, 24, 44, 0.78);
+      --panel-border: rgba(255,255,255,0.1);
+      --text: #ffffff;
+      --muted: #d8d8e8;
+      --green: #41b75d;
+      --green-dark: #2f9147;
+      --blue: #00a7ff;
+      --pink: #ff2e88;
+      --yellow: #ffd43b;
+      --orange: #ff7a00;
+      --purple: #9d4dff;
+      --shadow: 0 12px 30px rgba(0,0,0,.35);
+      --radius: 24px;
+      --radius-sm: 16px;
+      --max: 1280px;
     }
 
-    body{
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      background: #0c0c0f;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 20% 20%, rgba(157,77,255,.20), transparent 20%),
+        radial-gradient(circle at 75% 15%, rgba(0,167,255,.18), transparent 20%),
+        radial-gradient(circle at 85% 80%, rgba(255,46,136,.16), transparent 22%),
+        linear-gradient(180deg, var(--bg-1), var(--bg-2));
+      min-height: 100vh;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: auto;
+      width: 360px;
+      height: 360px;
+      filter: blur(4px);
+      pointer-events: none;
+      opacity: .8;
+      z-index: 0;
+    }
+
+    body::before {
+      left: -60px;
+      bottom: 100px;
+      background: radial-gradient(circle, rgba(0,167,255,.6) 0 10px, transparent 12px),
+                  radial-gradient(circle, rgba(255,212,59,.7) 0 8px, transparent 10px),
+                  radial-gradient(circle, rgba(255,46,136,.7) 0 8px, transparent 10px),
+                  radial-gradient(circle, rgba(157,77,255,.65) 0 7px, transparent 9px);
+      background-size: 80px 80px, 90px 90px, 110px 110px, 130px 130px;
+      background-position: 0 0, 30px 10px, 60px 35px, 100px 60px;
+      transform: rotate(-8deg);
+    }
+
+    body::after {
+      right: -90px;
+      top: 180px;
+      background: radial-gradient(circle, rgba(255,46,136,.65) 0 10px, transparent 12px),
+                  radial-gradient(circle, rgba(0,167,255,.6) 0 8px, transparent 10px),
+                  radial-gradient(circle, rgba(255,122,0,.65) 0 8px, transparent 10px),
+                  radial-gradient(circle, rgba(255,212,59,.65) 0 7px, transparent 9px);
+      background-size: 90px 90px, 120px 120px, 110px 110px, 140px 140px;
+      background-position: 0 0, 40px 15px, 85px 40px, 120px 70px;
+      transform: rotate(14deg);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 22px 0;
+    }
+
+    .brand {
+      font-size: clamp(28px, 4vw, 58px);
+      font-weight: 900;
+      line-height: .9;
+      font-style: italic;
+      position: relative;
+      display: inline-block;
+      text-shadow: 0 4px 16px rgba(0,0,0,.25);
+    }
+
+    .brand::before,
+    .brand::after {
+      content: "";
+      position: absolute;
+      inset: 50% auto auto 50%;
+      width: 112%;
+      height: 112%;
+      transform: translate(-50%, -50%);
+      background:
+        radial-gradient(circle at 5% 50%, var(--blue) 0 6px, transparent 7px),
+        radial-gradient(circle at 18% 18%, var(--purple) 0 5px, transparent 6px),
+        radial-gradient(circle at 90% 22%, var(--pink) 0 6px, transparent 7px),
+        radial-gradient(circle at 96% 55%, var(--orange) 0 6px, transparent 7px),
+        radial-gradient(circle at 85% 84%, var(--yellow) 0 6px, transparent 7px),
+        radial-gradient(circle at 12% 86%, var(--blue) 0 6px, transparent 7px);
+      filter: blur(.2px);
+      z-index: -1;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      color: #f5f5ff;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .menu a { opacity: .92; }
+    .menu a:hover { color: var(--yellow); }
+
+    .cart-btn,
+    .btn {
+      border: 0;
+      cursor: pointer;
+      border-radius: 16px;
+      font-weight: 800;
+      transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+    }
+
+    .cart-btn {
+      background: linear-gradient(180deg, #53cd70, var(--green-dark));
       color: white;
+      padding: 16px 26px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: var(--shadow);
+      position: relative;
+      font-size: 1.05rem;
+    }
+
+    .cart-btn:hover,
+    .btn:hover { transform: translateY(-2px) scale(1.01); }
+
+    .cart-count {
+      position: absolute;
+      right: -8px;
+      top: -8px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #a6e56a;
+      color: #0d220f;
+      font-size: .95rem;
+      font-weight: 900;
+      box-shadow: 0 8px 18px rgba(0,0,0,.2);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 30px;
+      align-items: center;
+      padding: 18px 0 40px;
+    }
+
+    .slogan {
+      font-size: clamp(46px, 6vw, 88px);
+      font-weight: 900;
+      font-style: italic;
+      margin: 0 0 18px;
+      line-height: .96;
+      position: relative;
+      display: inline-block;
+    }
+
+    .slogan::after {
+      content: "";
+      display: block;
+      width: 72%;
+      height: 5px;
+      margin-top: 8px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--blue), var(--purple), var(--pink), var(--yellow));
+      box-shadow: 0 0 20px rgba(255,255,255,.15);
+    }
+
+    .hero h2 {
+      font-size: clamp(26px, 3vw, 50px);
+      line-height: 1.15;
+      margin: 0 0 18px;
+      max-width: 680px;
+    }
+
+    .hero h2 strong,
+    .hero p strong,
+    .feature h3 strong { color: white; }
+
+    .hero p {
+      color: var(--muted);
+      font-size: clamp(17px, 1.4vw, 24px);
       line-height: 1.6;
+      max-width: 760px;
+      margin: 0 0 28px;
     }
 
-    html{
-      scroll-behavior:smooth;
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
     }
 
-    header{
-      background: linear-gradient(135deg, #0a0a0a, #15151a);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+    .btn {
+      background: linear-gradient(180deg, #52ca6e, #33994d);
+      color: white;
+      padding: 16px 24px;
+      font-size: 1rem;
+      box-shadow: var(--shadow);
     }
 
-    .nav{
-      max-width: 1200px;
-      margin: auto;
-      padding: 18px 20px;
+    .btn.secondary {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.1);
+      color: white;
+      box-shadow: none;
+    }
+
+    .hero-badges {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      color: #eef9ea;
+      font-weight: 700;
+      font-size: .98rem;
+    }
+
+    .hero-badges span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.08);
+      padding: 10px 14px;
+      border-radius: 999px;
+      backdrop-filter: blur(8px);
+    }
+
+    .product-showcase {
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border: 1px solid var(--panel-border);
+      border-radius: 30px;
+      padding: 24px;
+      position: relative;
+      min-height: 520px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .product-showcase::before {
+      content: "";
+      position: absolute;
+      inset: auto auto 0 0;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, rgba(255,46,136,.18), transparent 65%);
+      filter: blur(4px);
+    }
+
+    .showcase-grid {
+      height: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: end;
+      gap: 16px;
+    }
+
+    .showcase-main {
+      align-self: center;
+      padding: 20px;
+    }
+
+    .showcase-side {
+      display: grid;
+      gap: 12px;
+      align-items: end;
+      padding-bottom: 8px;
+    }
+
+    .showcase-card {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 22px;
+      padding: 16px;
+      backdrop-filter: blur(8px);
+    }
+
+    .showcase-card h3 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+    }
+
+    .section {
+      padding: 22px 0;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 3vw, 48px);
+      margin: 0 0 20px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-top: 10px;
+    }
+
+    .feature,
+    .product-card {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .feature {
+      padding: 22px;
+      min-height: 220px;
+    }
+
+    .icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      font-size: 1.7rem;
+      margin-bottom: 14px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.09);
+    }
+
+    .feature h3 {
+      margin: 0 0 10px;
+      font-size: 1.5rem;
+      line-height: 1.15;
+    }
+
+    .feature p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .catalog-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .search-wrap {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .search-input {
+      min-width: 320px;
+      background: rgba(255,255,255,.07);
+      color: white;
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 18px;
+      padding: 15px 16px;
+      outline: none;
+      font-size: 1rem;
+    }
+
+    .search-input::placeholder { color: #c8c8db; }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .product-card {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      min-height: 440px;
+    }
+
+    .product-media {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 20px;
+      min-height: 210px;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      margin-bottom: 14px;
+      overflow: hidden;
+    }
+
+    .product-media img {
+      max-height: 185px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 14px 20px rgba(0,0,0,.28));
+    }
+
+    .product-card h3 {
+      font-size: 1.9rem;
+      line-height: 1.05;
+      margin: 6px 0 10px;
+    }
+
+    .product-card p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      line-height: 1.55;
+      flex-grow: 1;
+    }
+
+    .product-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: auto;
+    }
+
+    .price {
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: .3px;
+    }
+
+    .pill-btn {
+      background: linear-gradient(180deg, #54ce71, #379e50);
+      color: white;
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 18px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .footer-cta {
+      margin: 34px 0 60px;
+      padding: 24px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border: 1px solid rgba(255,255,255,.1);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -41,553 +487,238 @@
       flex-wrap: wrap;
     }
 
-    .logo{
-      font-size: 28px;
-      font-weight: bold;
-      letter-spacing: 2px;
+    .footer-cta h3 {
+      margin: 0 0 6px;
+      font-size: clamp(24px, 2.2vw, 38px);
     }
 
-    .logo span{
-      color: #ff2ea6;
+    .footer-cta p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 680px;
     }
 
-    .menu a{
-      color: white;
-      text-decoration: none;
-      margin-left: 18px;
-      font-size: 15px;
-      transition: 0.3s;
-    }
+    .hidden { display: none !important; }
 
-    .menu a:hover{
-      color: #38d9ff;
-    }
-
-    .hero{
-      max-width: 1200px;
-      margin: auto;
-      padding: 70px 20px 50px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: center;
-    }
-
-    .hero-text h1{
-      font-size: 56px;
-      line-height: 1.05;
-      margin-bottom: 20px;
-    }
-
-    .hero-text h1 span{
-      color: #ff2ea6;
-    }
-
-    .hero-text p{
-      color: #d1d1d1;
-      font-size: 18px;
-      margin-bottom: 25px;
-      max-width: 550px;
-    }
-
-    .buttons a{
-      display: inline-block;
-      padding: 14px 24px;
-      margin-right: 12px;
-      margin-bottom: 12px;
-      text-decoration: none;
-      border-radius: 30px;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .btn-primary{
-      background: linear-gradient(90deg,#ff2ea6,#7d4dff);
-      color: white;
-    }
-
-    .btn-primary:hover{
-      transform: translateY(-2px);
-    }
-
-    .btn-secondary{
-      border: 1px solid rgba(255,255,255,0.18);
-      color: white;
-      background: rgba(255,255,255,0.03);
-    }
-
-    .btn-secondary:hover{
-      background: rgba(255,255,255,0.08);
-    }
-
-    .hero-card{
-      background: linear-gradient(180deg,#17171d,#0f0f14);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 28px;
-      padding: 25px;
-      box-shadow: 0 10px 35px rgba(0,0,0,0.45);
-      text-align: center;
-    }
-
-    .hero-card img{
-      width: 100%;
-      max-width: 320px;
-      border-radius: 20px;
-      object-fit: cover;
-    }
-
-    .badge{
-      display: inline-block;
-      padding: 8px 14px;
-      border-radius: 30px;
-      background: rgba(255,255,255,0.08);
-      margin-bottom: 16px;
-      font-size: 13px;
-      color: #e8e8e8;
-    }
-
-    .section{
-      max-width: 1200px;
-      margin: auto;
-      padding: 70px 20px;
-    }
-
-    .section-title{
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .section-title h2{
-      font-size: 38px;
-      margin-bottom: 8px;
-    }
-
-    .section-title p{
-      color: #c3c3c3;
-      max-width: 700px;
-      margin: auto;
-    }
-
-    .products{
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    .card{
-      background: linear-gradient(180deg,#17171d,#101015);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 24px;
-      padding: 22px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.30);
-      transition: 0.3s;
-    }
-
-    .card:hover{
-      transform: translateY(-6px);
-    }
-
-    .card img{
-      width: 100%;
-      height: 240px;
-      object-fit: cover;
-      border-radius: 18px;
-      margin-bottom: 15px;
-      background: #1d1d24;
-    }
-
-    .card h3{
-      margin-bottom: 8px;
-      font-size: 24px;
-    }
-
-    .card p{
-      color: #cfcfcf;
-      margin-bottom: 12px;
-      font-size: 15px;
-    }
-
-    .price{
-      font-size: 24px;
-      font-weight: bold;
-      color: #38d9ff;
-      margin-bottom: 10px;
-    }
-
-    .mini-tag{
-      display:inline-block;
-      padding: 6px 12px;
-      font-size: 12px;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.08);
-      margin-bottom: 12px;
-      color: #eeeeee;
-    }
-
-    .steps{
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    .step{
-      background: linear-gradient(180deg,#17171d,#101015);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 24px;
-      padding: 24px;
-      text-align: center;
-    }
-
-    .step-number{
-      width: 60px;
-      height: 60px;
-      margin: 0 auto 15px;
-      border-radius: 18px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size: 24px;
-      font-weight: bold;
-      background: linear-gradient(135deg,#ff2ea6,#38d9ff);
-    }
-
-    .about{
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 28px;
-      align-items: center;
-    }
-
-    .about img{
-      width: 100%;
-      border-radius: 24px;
-      object-fit: cover;
-      min-height: 320px;
-      background:#1d1d24;
-    }
-
-    .about-box{
-      background: linear-gradient(180deg,#17171d,#101015);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 24px;
-      padding: 30px;
-    }
-
-    .contact-grid{
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 24px;
-    }
-
-    .form-box,
-    .info-box{
-      background: linear-gradient(180deg,#17171d,#101015);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 24px;
-      padding: 28px;
-    }
-
-    input, select, textarea{
-      width: 100%;
-      padding: 14px 16px;
-      margin-top: 10px;
-      margin-bottom: 16px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: #0f0f14;
-      color: white;
-      font-size: 15px;
-    }
-
-    textarea{
-      min-height: 130px;
-      resize: vertical;
-    }
-
-    button{
-      border: none;
-      padding: 14px 24px;
-      border-radius: 30px;
-      background: linear-gradient(90deg,#ff2ea6,#7d4dff);
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    button:hover{
-      transform: translateY(-2px);
-    }
-
-    .wa-btn{
-      display:inline-block;
-      text-decoration:none;
-      margin-top: 12px;
-      background: #25D366;
-      color: white;
-      padding: 14px 22px;
-      border-radius: 30px;
-      font-weight: bold;
-    }
-
-    .faq{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    .faq-item{
-      background: linear-gradient(180deg,#17171d,#101015);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 20px;
-      padding: 22px;
-    }
-
-    .faq-item h4{
-      margin-bottom: 8px;
-      color: #38d9ff;
-    }
-
-    footer{
-      border-top: 1px solid rgba(255,255,255,0.08);
-      text-align:center;
-      padding: 30px 20px;
-      color: #a0a0a0;
-      margin-top: 30px;
-    }
-
-    @media(max-width: 900px){
+    @media (max-width: 1180px) {
       .hero,
-      .products,
-      .steps,
-      .about,
-      .contact-grid,
-      .faq{
-        grid-template-columns: 1fr;
-      }
+      .features,
+      .products { grid-template-columns: 1fr 1fr; }
+      .hero { gap: 24px; }
+    }
 
-      .hero-text h1{
-        font-size: 42px;
-      }
-
-      .menu{
-        width:100%;
-      }
-
-      .menu a{
-        display:inline-block;
-        margin: 8px 12px 0 0;
-      }
+    @media (max-width: 860px) {
+      .nav { flex-wrap: wrap; }
+      .menu { order: 3; width: 100%; justify-content: center; }
+      .hero,
+      .features,
+      .products { grid-template-columns: 1fr; }
+      .search-input { min-width: 100%; width: 100%; }
+      .catalog-head { align-items: stretch; }
+      .product-showcase { min-height: auto; }
+      .showcase-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
+  <header class="container">
+    <nav class="nav">
+      <a href="#inicio" class="brand" aria-label="Sneak Clean">SNEAK<br>CLEAN</a>
 
-  <header>
-    <div class="nav">
-      <div class="logo">SNEAK <span>CLEAN</span></div>
       <div class="menu">
         <a href="#inicio">Inicio</a>
-        <a href="#productos">Productos</a>
-        <a href="#como-usar">Cómo usar</a>
-        <a href="#nosotros">Nosotros</a>
-        <a href="#contacto">Atención</a>
+        <a href="#beneficios">Beneficios</a>
+        <a href="#catalogo">Catálogo</a>
+        <a href="#contacto">Contacto</a>
       </div>
-    </div>
+
+      <button class="cart-btn" id="openCartBtn" aria-label="Abrir carrito">
+        <span style="font-size:1.2rem">🛒</span>
+        <span>Carrito</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </nav>
   </header>
 
-  <section class="hero" id="inicio">
-    <div class="hero-text">
-      <div class="badge">Limpieza premium para sneakers</div>
-      <h1>Haz que tus tenis <span>vuelvan a destacar</span></h1>
-      <p>
-        Sneak Clean es una solución especializada para limpiar sneakers,
-        mantenerlos frescos y mejorar su apariencia sin complicaciones.
-        Una marca urbana, moderna y lista para vender en línea.
-      </p>
-      <div class="buttons">
-        <a href="#productos" class="btn-primary">Ver productos</a>
-        <a href="#contacto" class="btn-secondary">Atención a cliente</a>
-      </div>
-    </div>
-
-    <div class="hero-card">
-      <div class="badge">Producto estrella</div>
-      <img src="producto-principal.jpg" alt="Sneak Clean">
-      <h2 style="margin-top:18px;">Sneak Clean 250 ml</h2>
-      <p style="color:#cfcfcf; margin-top:8px;">Cuida tus pasos con un kit moderno para el cuidado de sneakers.</p>
-      <p class="price" style="margin-top:14px;">$149 MXN</p>
-    </div>
-  </section>
-
-  <section class="section" id="productos">
-    <div class="section-title">
-      <h2>Productos destacados</h2>
-      <p>Una línea pensada para la limpieza y cuidado de sneakers: solución, cepillo y microfibra.</p>
-    </div>
-
-    <div class="products">
-      <div class="card">
-        <img src="producto-principal.jpg" alt="Sneak Clean 250 ml">
-        <div class="mini-tag">250 ml</div>
-        <h3>Sneak Clean</h3>
-        <p>Solución de limpieza para sneakers y tenis de uso diario.</p>
-        <div class="price">$149 MXN</div>
-        <a class="btn-primary" href="#contacto" style="text-decoration:none; display:inline-block;">Pedir ahora</a>
-      </div>
-
-      <div class="card">
-        <img src="cepillo.jpg" alt="Cepillo premium">
-        <div class="mini-tag">Cerdas suaves</div>
-        <h3>Cepillo Premium</h3>
-        <p>Cepillo ideal para remover suciedad sin maltratar el material.</p>
-        <div class="price">$79 MXN</div>
-        <a class="btn-primary" href="#contacto" style="text-decoration:none; display:inline-block;">Pedir ahora</a>
-      </div>
-
-      <div class="card">
-        <img src="microfibra.jpg" alt="Toalla de microfibra">
-        <div class="mini-tag">Acabado limpio</div>
-        <h3>Toalla Microfibra</h3>
-        <p>Perfecta para retirar exceso de humedad y dar un mejor acabado.</p>
-        <div class="price">$59 MXN</div>
-        <a class="btn-primary" href="#contacto" style="text-decoration:none; display:inline-block;">Pedir ahora</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="como-usar">
-    <div class="section-title">
-      <h2>Cómo usar Sneak Clean</h2>
-      <p>Un proceso simple y rápido para mantener tus sneakers impecables.</p>
-    </div>
-
-    <div class="steps">
-      <div class="step">
-        <div class="step-number">1</div>
-        <h3>Aplica</h3>
-        <p>Aplica unas gotas de la solución en el cepillo o directamente sobre la zona sucia.</p>
-      </div>
-
-      <div class="step">
-        <div class="step-number">2</div>
-        <h3>Cepilla</h3>
-        <p>Cepilla suavemente con movimientos circulares para retirar polvo y manchas.</p>
-      </div>
-
-      <div class="step">
-        <div class="step-number">3</div>
-        <h3>Finaliza</h3>
-        <p>Retira el exceso con la toalla de microfibra y deja secar.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="nosotros">
-    <div class="section-title">
-      <h2>Sobre Sneak Clean</h2>
-      <p>Una marca creada para quienes aman sus tenis y quieren mantenerlos impecables con estilo.</p>
-    </div>
-
-    <div class="about">
-      <img src="kit.jpg" alt="Kit Sneak Clean">
-      <div class="about-box">
-        <h3 style="font-size:30px; margin-bottom:14px;">Cuida tus pasos</h3>
-        <p style="color:#d0d0d0; margin-bottom:14px;">
-          Sneak Clean nace como una solución moderna para la limpieza de sneakers.
-          Nuestra propuesta combina estilo urbano, practicidad y atención cercana al cliente.
-        </p>
-        <p style="color:#d0d0d0; margin-bottom:14px;">
-          Queremos que cada persona pueda conservar sus tenis limpios, presentables y listos para cualquier ocasión.
-        </p>
-        <p style="color:#38d9ff; font-weight:bold;">
-          Ideal para venta en línea, pedidos por WhatsApp y atención personalizada.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="contacto">
-    <div class="section-title">
-      <h2>Atención a cliente</h2>
-      <p>Resuelve dudas, solicita tu pedido y recibe atención rápida desde la página.</p>
-    </div>
-
-    <div class="contact-grid">
-      <div class="form-box">
-        <h3 style="font-size:28px; margin-bottom:18px;">Haz tu pedido</h3>
-
-        <form>
-          <input type="text" placeholder="Nombre completo">
-          <input type="text" placeholder="Teléfono o WhatsApp">
-          <input type="email" placeholder="Correo electrónico">
-
-          <select>
-            <option>Selecciona un producto</option>
-            <option>Sneak Clean 250 ml</option>
-            <option>Cepillo Premium</option>
-            <option>Toalla Microfibra</option>
-            <option>Kit completo</option>
-          </select>
-
-          <textarea placeholder="Escribe tu pedido o tus dudas"></textarea>
-
-          <button type="submit">Enviar pedido</button>
-        </form>
-      </div>
-
-      <div class="info-box">
-        <h3 style="font-size:28px; margin-bottom:18px;">Contacto directo</h3>
-        <p style="margin-bottom:12px;"><strong>WhatsApp:</strong> +52 312 000 0000</p>
-        <p style="margin-bottom:12px;"><strong>Correo:</strong> hola@sneakclean.mx</p>
-        <p style="margin-bottom:12px;"><strong>Horario:</strong> Lunes a sábado · 9:00 a 19:00</p>
-        <p style="margin-top:20px; color:#d0d0d0;">
-          También puedes realizar tu pedido directamente por WhatsApp.
+  <main>
+    <section class="container hero" id="inicio">
+      <div>
+        <h1 class="slogan">¡CUIDA TUS PASOS!</h1>
+        <h2>La solución <strong>profesional</strong> para limpieza de sneakers.</h2>
+        <p>
+          Somos una <strong>marca mexicana</strong> dedicada al cuidado de sneakers.
+          Nuestra solución <strong>no es tóxica</strong>, pensada en el mantenimiento continuo
+          de sneakers sin dañar sus materiales.
         </p>
 
-        <a
-          class="wa-btn"
-          href="https://wa.me/523120000000?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20Sneak%20Clean"
-          target="_blank"
-        >
-          Pedir por WhatsApp
-        </a>
-      </div>
-    </div>
-  </section>
+        <div class="hero-actions">
+          <a class="btn" href="#catalogo">Ver catálogo</a>
+          <button class="btn secondary" id="addKitHero">Agregar kit completo</button>
+        </div>
 
-  <section class="section">
-    <div class="section-title">
-      <h2>Preguntas frecuentes</h2>
-      <p>Respuestas rápidas para tus clientes.</p>
-    </div>
-
-    <div class="faq">
-      <div class="faq-item">
-        <h4>¿Sirve para tenis blancos?</h4>
-        <p>Sí, es ideal para sneakers blancos con suciedad común de uso diario.</p>
+        <div class="hero-badges">
+          <span>🚚 Envíos a todo México</span>
+          <span>🧴 Solución no tóxica</span>
+          <span>🛍️ Ideal para distribuidores</span>
+        </div>
       </div>
 
-      <div class="faq-item">
-        <h4>¿Se puede usar en materiales delicados?</h4>
-        <p>Sí, pero primero se recomienda hacer una prueba en una zona pequeña.</p>
+      <div class="product-showcase" aria-label="Productos Sneak Clean">
+        <div class="showcase-grid">
+          <div class="showcase-main">
+            <img src="images/bottle-250ml.png" alt="Frasco Sneak Clean 250 ml" />
+          </div>
+          <div class="showcase-side">
+            <div class="showcase-card">
+              <h3>Kit completo</h3>
+              <img src="images/kit-bag.png" alt="Kit completo Sneak Clean en bolsa con logo" />
+            </div>
+            <div class="showcase-card" style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; align-items:center;">
+              <img src="images/brush-soft.png" alt="Cepillo suave Sneak Clean" />
+              <img src="images/towel-microfiber.png" alt="Toalla de microfibra Sneak Clean" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section" id="beneficios">
+      <h2 class="section-title">Por qué Sneak Clean es ideal para tu negocio</h2>
+      <div class="features">
+        <article class="feature">
+          <div class="icon">🧪</div>
+          <h3>Fórmula <strong>especializada</strong></h3>
+          <p>Solución no tóxica compatible con piel, gamuza, textiles y sintéticos para una limpieza segura y constante.</p>
+        </article>
+        <article class="feature">
+          <div class="icon">🧰</div>
+          <h3><strong>Kit completo</strong> listo para retail</h3>
+          <p>Incluye frasco de 250 ml, cepillo suave y toalla de microfibra. Se entrega en bolsa con logo Sneak Clean.</p>
+        </article>
+        <article class="feature">
+          <div class="icon">📈</div>
+          <h3>Alta rotación <strong>en retail</strong></h3>
+          <p>Producto visualmente atractivo y fácil de explicar al cliente final, ideal para tiendas especializadas en sneakers.</p>
+        </article>
+        <article class="feature">
+          <div class="icon">🇲🇽</div>
+          <h3>Marca <strong>mexicana</strong></h3>
+          <p>Diseñada para el mercado nacional, con enfoque en cuidado continuo, materiales delicados y presencia comercial moderna.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="container section" id="catalogo">
+      <div class="catalog-head">
+        <h2 class="section-title" style="margin:0;">Catálogo</h2>
+        <div class="search-wrap">
+          <input id="searchInput" class="search-input" type="text" placeholder="Buscar productos..." />
+          <button class="btn" id="searchBtn">Buscar</button>
+        </div>
       </div>
 
-      <div class="faq-item">
-        <h4>¿Hacen envíos?</h4>
-        <p>Sí, puedes coordinar tu pedido y envío por WhatsApp o por mensaje directo.</p>
+      <div class="products" id="productGrid">
+        <article class="product-card" data-name="sneak clean 250 ml frasco limpiador">
+          <div class="product-media">
+            <img src="images/bottle-250ml.png" alt="Sneak Clean 250 ml" />
+          </div>
+          <h3>Sneak Clean 250 ml</h3>
+          <p>Solución especializada para limpieza continua de sneakers sin dañar materiales delicados.</p>
+          <div class="product-bottom">
+            <span class="price">$0</span>
+            <button class="pill-btn add-to-cart" data-product="Sneak Clean 250 ml">Agregar al carrito</button>
+          </div>
+        </article>
+
+        <article class="product-card" data-name="cepillo suave cerdas blancas">
+          <div class="product-media">
+            <img src="images/brush-soft.png" alt="Cepillo suave con cerdas blancas" />
+          </div>
+          <h3>Cepillo Suave</h3>
+          <p>Ideal para gamuza, malla y superficies delicadas. Limpia sin maltratar fibras ni acabados.</p>
+          <div class="product-bottom">
+            <span class="price">$0</span>
+            <button class="pill-btn add-to-cart" data-product="Cepillo Suave">Agregar al carrito</button>
+          </div>
+        </article>
+
+        <article class="product-card" data-name="toalla microfibra paño gris">
+          <div class="product-media">
+            <img src="images/towel-microfiber.png" alt="Toalla de microfibra gris" />
+          </div>
+          <h3>Toalla de Microfibra</h3>
+          <p>Paño premium para secar, retirar suciedad y dar acabado final durante el mantenimiento del sneaker.</p>
+          <div class="product-bottom">
+            <span class="price">$0</span>
+            <button class="pill-btn add-to-cart" data-product="Toalla de Microfibra">Agregar al carrito</button>
+          </div>
+        </article>
+
+        <article class="product-card" data-name="kit completo bolsa logo frasco cepillo toalla">
+          <div class="product-media">
+            <img src="images/kit-bag.png" alt="Kit completo con frasco, cepillo y toalla en bolsa con logo Sneak Clean" />
+          </div>
+          <h3>Kit Completo</h3>
+          <p>Incluye frasco 250 ml, cepillo suave y toalla de microfibra. Se envía en bolsa con logo Sneak Clean.</p>
+          <div class="product-bottom">
+            <span class="price">$0</span>
+            <button class="pill-btn add-to-cart" data-product="Kit Completo">Agregar al carrito</button>
+          </div>
+        </article>
       </div>
+    </section>
 
-      <div class="faq-item">
-        <h4>¿Qué incluye el kit?</h4>
-        <p>Puede incluir la solución Sneak Clean, cepillo premium y toalla de microfibra.</p>
+    <section class="container">
+      <div class="footer-cta" id="contacto">
+        <div>
+          <h3>¿Listo para distribuir Sneak Clean?</h3>
+          <p>Producto ideal para tiendas de sneakers, boutiques y distribuidores que buscan una presentación moderna y una solución segura.</p>
+        </div>
+        <a class="btn" href="mailto:ventas@sneakclean.mx">Contáctanos</a>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <footer>
-    © 2026 Sneak Clean — Solución para la limpieza de sneakers
-  </footer>
+  <script>
+    const cartCount = document.getElementById('cartCount');
+    const addButtons = document.querySelectorAll('.add-to-cart');
+    const addKitHero = document.getElementById('addKitHero');
+    const openCartBtn = document.getElementById('openCartBtn');
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
+    const productCards = document.querySelectorAll('.product-card');
 
+    let count = 0;
+
+    function updateCart(productName) {
+      count += 1;
+      cartCount.textContent = count;
+      if (productName) {
+        openCartBtn.setAttribute('title', productName + ' agregado');
+      }
+    }
+
+    addButtons.forEach((btn) => {
+      btn.addEventListener('click', () => updateCart(btn.dataset.product));
+    });
+
+    addKitHero.addEventListener('click', () => updateCart('Kit Completo'));
+
+    openCartBtn.addEventListener('click', () => {
+      alert('Carrito actual: ' + count + ' producto(s).\n\nMás adelante aquí puedes conectar una tienda real o WhatsApp.');
+    });
+
+    function filterProducts() {
+      const term = searchInput.value.toLowerCase().trim();
+      productCards.forEach((card) => {
+        const name = card.dataset.name;
+        const visible = name.includes(term) || term === '';
+        card.classList.toggle('hidden', !visible);
+      });
+    }
+
+    searchBtn.addEventListener('click', filterProducts);
+    searchInput.addEventListener('input', filterProducts);
+  </script>
 </body>
 </html>
