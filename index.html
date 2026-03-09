@@ -1,158 +1,593 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sneak Clean</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sneak Clean</title>
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
 
-<style>
-body{
-    margin:0;
-    font-family: Arial, Helvetica, sans-serif;
-    background:#0f0f0f;
-    color:white;
-}
+    body{
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0c0c0f;
+      color: white;
+      line-height: 1.6;
+    }
 
-header{
-    text-align:center;
-    padding:60px 20px;
-    background:linear-gradient(135deg,#1a1a1a,#000000);
-}
+    html{
+      scroll-behavior:smooth;
+    }
 
-header h1{
-    font-size:50px;
-    margin:0;
-    letter-spacing:3px;
-}
+    header{
+      background: linear-gradient(135deg, #0a0a0a, #15151a);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
 
-header p{
-    color:#bbbbbb;
-}
+    .nav{
+      max-width: 1200px;
+      margin: auto;
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
 
-section{
-    padding:60px 20px;
-    max-width:1000px;
-    margin:auto;
-}
+    .logo{
+      font-size: 28px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
 
-h2{
-    text-align:center;
-    margin-bottom:40px;
-    font-size:32px;
-}
+    .logo span{
+      color: #ff2ea6;
+    }
 
-.card-container{
-    display:flex;
-    gap:20px;
-    flex-wrap:wrap;
-    justify-content:center;
-}
+    .menu a{
+      color: white;
+      text-decoration: none;
+      margin-left: 18px;
+      font-size: 15px;
+      transition: 0.3s;
+    }
 
-.card{
-    background:#1a1a1a;
-    padding:25px;
-    border-radius:15px;
-    width:250px;
-    box-shadow:0 0 20px rgba(0,0,0,0.5);
-    transition:0.3s;
-}
+    .menu a:hover{
+      color: #38d9ff;
+    }
 
-.card:hover{
-    transform:translateY(-5px);
-}
+    .hero{
+      max-width: 1200px;
+      margin: auto;
+      padding: 70px 20px 50px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
 
-.price{
-    font-size:22px;
-    font-weight:bold;
-    margin-top:10px;
-}
+    .hero-text h1{
+      font-size: 56px;
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
 
-.btn{
-    display:inline-block;
-    margin-top:15px;
-    padding:10px 20px;
-    background:#ff0077;
-    color:white;
-    text-decoration:none;
-    border-radius:20px;
-}
+    .hero-text h1 span{
+      color: #ff2ea6;
+    }
 
-.steps{
-    text-align:center;
-    line-height:2;
-    font-size:18px;
-}
+    .hero-text p{
+      color: #d1d1d1;
+      font-size: 18px;
+      margin-bottom: 25px;
+      max-width: 550px;
+    }
 
-.contact{
-    text-align:center;
-    line-height:2;
-}
+    .buttons a{
+      display: inline-block;
+      padding: 14px 24px;
+      margin-right: 12px;
+      margin-bottom: 12px;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
 
-footer{
-    text-align:center;
-    padding:30px;
-    background:#000;
-    color:#777;
-}
-</style>
+    .btn-primary{
+      background: linear-gradient(90deg,#ff2ea6,#7d4dff);
+      color: white;
+    }
+
+    .btn-primary:hover{
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary{
+      border: 1px solid rgba(255,255,255,0.18);
+      color: white;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .btn-secondary:hover{
+      background: rgba(255,255,255,0.08);
+    }
+
+    .hero-card{
+      background: linear-gradient(180deg,#17171d,#0f0f14);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 28px;
+      padding: 25px;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.45);
+      text-align: center;
+    }
+
+    .hero-card img{
+      width: 100%;
+      max-width: 320px;
+      border-radius: 20px;
+      object-fit: cover;
+    }
+
+    .badge{
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 30px;
+      background: rgba(255,255,255,0.08);
+      margin-bottom: 16px;
+      font-size: 13px;
+      color: #e8e8e8;
+    }
+
+    .section{
+      max-width: 1200px;
+      margin: auto;
+      padding: 70px 20px;
+    }
+
+    .section-title{
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-title h2{
+      font-size: 38px;
+      margin-bottom: 8px;
+    }
+
+    .section-title p{
+      color: #c3c3c3;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .products{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .card{
+      background: linear-gradient(180deg,#17171d,#101015);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      padding: 22px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.30);
+      transition: 0.3s;
+    }
+
+    .card:hover{
+      transform: translateY(-6px);
+    }
+
+    .card img{
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 18px;
+      margin-bottom: 15px;
+      background: #1d1d24;
+    }
+
+    .card h3{
+      margin-bottom: 8px;
+      font-size: 24px;
+    }
+
+    .card p{
+      color: #cfcfcf;
+      margin-bottom: 12px;
+      font-size: 15px;
+    }
+
+    .price{
+      font-size: 24px;
+      font-weight: bold;
+      color: #38d9ff;
+      margin-bottom: 10px;
+    }
+
+    .mini-tag{
+      display:inline-block;
+      padding: 6px 12px;
+      font-size: 12px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.08);
+      margin-bottom: 12px;
+      color: #eeeeee;
+    }
+
+    .steps{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .step{
+      background: linear-gradient(180deg,#17171d,#101015);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .step-number{
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 15px;
+      border-radius: 18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size: 24px;
+      font-weight: bold;
+      background: linear-gradient(135deg,#ff2ea6,#38d9ff);
+    }
+
+    .about{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .about img{
+      width: 100%;
+      border-radius: 24px;
+      object-fit: cover;
+      min-height: 320px;
+      background:#1d1d24;
+    }
+
+    .about-box{
+      background: linear-gradient(180deg,#17171d,#101015);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      padding: 30px;
+    }
+
+    .contact-grid{
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+    }
+
+    .form-box,
+    .info-box{
+      background: linear-gradient(180deg,#17171d,#101015);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      padding: 28px;
+    }
+
+    input, select, textarea{
+      width: 100%;
+      padding: 14px 16px;
+      margin-top: 10px;
+      margin-bottom: 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: #0f0f14;
+      color: white;
+      font-size: 15px;
+    }
+
+    textarea{
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    button{
+      border: none;
+      padding: 14px 24px;
+      border-radius: 30px;
+      background: linear-gradient(90deg,#ff2ea6,#7d4dff);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover{
+      transform: translateY(-2px);
+    }
+
+    .wa-btn{
+      display:inline-block;
+      text-decoration:none;
+      margin-top: 12px;
+      background: #25D366;
+      color: white;
+      padding: 14px 22px;
+      border-radius: 30px;
+      font-weight: bold;
+    }
+
+    .faq{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .faq-item{
+      background: linear-gradient(180deg,#17171d,#101015);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 22px;
+    }
+
+    .faq-item h4{
+      margin-bottom: 8px;
+      color: #38d9ff;
+    }
+
+    footer{
+      border-top: 1px solid rgba(255,255,255,0.08);
+      text-align:center;
+      padding: 30px 20px;
+      color: #a0a0a0;
+      margin-top: 30px;
+    }
+
+    @media(max-width: 900px){
+      .hero,
+      .products,
+      .steps,
+      .about,
+      .contact-grid,
+      .faq{
+        grid-template-columns: 1fr;
+      }
+
+      .hero-text h1{
+        font-size: 42px;
+      }
+
+      .menu{
+        width:100%;
+      }
+
+      .menu a{
+        display:inline-block;
+        margin: 8px 12px 0 0;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<header>
-    <h1>SNEAK CLEAN</h1>
-    <p>Solución premium para la limpieza de sneakers</p>
-</header>
-
-<section>
-    <h2>Productos</h2>
-    <div class="card-container">
-
-        <div class="card">
-            <h3>Sneak Clean 250ml</h3>
-            <p>Solución profesional para limpiar sneakers y tenis.</p>
-            <div class="price">$149 MXN</div>
-            <a href="#" class="btn">Comprar</a>
-        </div>
-
-        <div class="card">
-            <h3>Cepillo Premium</h3>
-            <p>Cerdas suaves que no dañan el material.</p>
-            <div class="price">$79 MXN</div>
-            <a href="#" class="btn">Comprar</a>
-        </div>
-
-        <div class="card">
-            <h3>Toalla Microfibra</h3>
-            <p>Acabado limpio y secado delicado.</p>
-            <div class="price">$59 MXN</div>
-            <a href="#" class="btn">Comprar</a>
-        </div>
-
+  <header>
+    <div class="nav">
+      <div class="logo">SNEAK <span>CLEAN</span></div>
+      <div class="menu">
+        <a href="#inicio">Inicio</a>
+        <a href="#productos">Productos</a>
+        <a href="#como-usar">Cómo usar</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#contacto">Atención</a>
+      </div>
     </div>
-</section>
+  </header>
 
-<section>
-    <h2>¿Cómo funciona?</h2>
+  <section class="hero" id="inicio">
+    <div class="hero-text">
+      <div class="badge">Limpieza premium para sneakers</div>
+      <h1>Haz que tus tenis <span>vuelvan a destacar</span></h1>
+      <p>
+        Sneak Clean es una solución especializada para limpiar sneakers,
+        mantenerlos frescos y mejorar su apariencia sin complicaciones.
+        Una marca urbana, moderna y lista para vender en línea.
+      </p>
+      <div class="buttons">
+        <a href="#productos" class="btn-primary">Ver productos</a>
+        <a href="#contacto" class="btn-secondary">Atención a cliente</a>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <div class="badge">Producto estrella</div>
+      <img src="producto-principal.jpg" alt="Sneak Clean">
+      <h2 style="margin-top:18px;">Sneak Clean 250 ml</h2>
+      <p style="color:#cfcfcf; margin-top:8px;">Cuida tus pasos con un kit moderno para el cuidado de sneakers.</p>
+      <p class="price" style="margin-top:14px;">$149 MXN</p>
+    </div>
+  </section>
+
+  <section class="section" id="productos">
+    <div class="section-title">
+      <h2>Productos destacados</h2>
+      <p>Una línea pensada para la limpieza y cuidado de sneakers: solución, cepillo y microfibra.</p>
+    </div>
+
+    <div class="products">
+      <div class="card">
+        <img src="producto-principal.jpg" alt="Sneak Clean 250 ml">
+        <div class="mini-tag">250 ml</div>
+        <h3>Sneak Clean</h3>
+        <p>Solución de limpieza para sneakers y tenis de uso diario.</p>
+        <div class="price">$149 MXN</div>
+        <a class="btn-primary" href="#contacto" style="text-decoration:none; display:inline-block;">Pedir ahora</a>
+      </div>
+
+      <div class="card">
+        <img src="cepillo.jpg" alt="Cepillo premium">
+        <div class="mini-tag">Cerdas suaves</div>
+        <h3>Cepillo Premium</h3>
+        <p>Cepillo ideal para remover suciedad sin maltratar el material.</p>
+        <div class="price">$79 MXN</div>
+        <a class="btn-primary" href="#contacto" style="text-decoration:none; display:inline-block;">Pedir ahora</a>
+      </div>
+
+      <div class="card">
+        <img src="microfibra.jpg" alt="Toalla de microfibra">
+        <div class="mini-tag">Acabado limpio</div>
+        <h3>Toalla Microfibra</h3>
+        <p>Perfecta para retirar exceso de humedad y dar un mejor acabado.</p>
+        <div class="price">$59 MXN</div>
+        <a class="btn-primary" href="#contacto" style="text-decoration:none; display:inline-block;">Pedir ahora</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="como-usar">
+    <div class="section-title">
+      <h2>Cómo usar Sneak Clean</h2>
+      <p>Un proceso simple y rápido para mantener tus sneakers impecables.</p>
+    </div>
+
     <div class="steps">
-        1️⃣ Aplica la solución en la zona sucia.<br>
-        2️⃣ Cepilla suavemente.<br>
-        3️⃣ Limpia con la toalla y deja secar.
-    </div>
-</section>
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3>Aplica</h3>
+        <p>Aplica unas gotas de la solución en el cepillo o directamente sobre la zona sucia.</p>
+      </div>
 
-<section>
-    <h2>Atención a cliente</h2>
-    <div class="contact">
-        WhatsApp: +52 312 000 0000<br>
-        Correo: hola@sneakclean.mx<br>
-        Lunes a sábado de 9:00 a 19:00
-    </div>
-</section>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3>Cepilla</h3>
+        <p>Cepilla suavemente con movimientos circulares para retirar polvo y manchas.</p>
+      </div>
 
-<footer>
-    © 2026 Sneak Clean — Cuida tus pasos
-</footer>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3>Finaliza</h3>
+        <p>Retira el exceso con la toalla de microfibra y deja secar.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="nosotros">
+    <div class="section-title">
+      <h2>Sobre Sneak Clean</h2>
+      <p>Una marca creada para quienes aman sus tenis y quieren mantenerlos impecables con estilo.</p>
+    </div>
+
+    <div class="about">
+      <img src="kit.jpg" alt="Kit Sneak Clean">
+      <div class="about-box">
+        <h3 style="font-size:30px; margin-bottom:14px;">Cuida tus pasos</h3>
+        <p style="color:#d0d0d0; margin-bottom:14px;">
+          Sneak Clean nace como una solución moderna para la limpieza de sneakers.
+          Nuestra propuesta combina estilo urbano, practicidad y atención cercana al cliente.
+        </p>
+        <p style="color:#d0d0d0; margin-bottom:14px;">
+          Queremos que cada persona pueda conservar sus tenis limpios, presentables y listos para cualquier ocasión.
+        </p>
+        <p style="color:#38d9ff; font-weight:bold;">
+          Ideal para venta en línea, pedidos por WhatsApp y atención personalizada.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contacto">
+    <div class="section-title">
+      <h2>Atención a cliente</h2>
+      <p>Resuelve dudas, solicita tu pedido y recibe atención rápida desde la página.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="form-box">
+        <h3 style="font-size:28px; margin-bottom:18px;">Haz tu pedido</h3>
+
+        <form>
+          <input type="text" placeholder="Nombre completo">
+          <input type="text" placeholder="Teléfono o WhatsApp">
+          <input type="email" placeholder="Correo electrónico">
+
+          <select>
+            <option>Selecciona un producto</option>
+            <option>Sneak Clean 250 ml</option>
+            <option>Cepillo Premium</option>
+            <option>Toalla Microfibra</option>
+            <option>Kit completo</option>
+          </select>
+
+          <textarea placeholder="Escribe tu pedido o tus dudas"></textarea>
+
+          <button type="submit">Enviar pedido</button>
+        </form>
+      </div>
+
+      <div class="info-box">
+        <h3 style="font-size:28px; margin-bottom:18px;">Contacto directo</h3>
+        <p style="margin-bottom:12px;"><strong>WhatsApp:</strong> +52 312 000 0000</p>
+        <p style="margin-bottom:12px;"><strong>Correo:</strong> hola@sneakclean.mx</p>
+        <p style="margin-bottom:12px;"><strong>Horario:</strong> Lunes a sábado · 9:00 a 19:00</p>
+        <p style="margin-top:20px; color:#d0d0d0;">
+          También puedes realizar tu pedido directamente por WhatsApp.
+        </p>
+
+        <a
+          class="wa-btn"
+          href="https://wa.me/523120000000?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20Sneak%20Clean"
+          target="_blank"
+        >
+          Pedir por WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-title">
+      <h2>Preguntas frecuentes</h2>
+      <p>Respuestas rápidas para tus clientes.</p>
+    </div>
+
+    <div class="faq">
+      <div class="faq-item">
+        <h4>¿Sirve para tenis blancos?</h4>
+        <p>Sí, es ideal para sneakers blancos con suciedad común de uso diario.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>¿Se puede usar en materiales delicados?</h4>
+        <p>Sí, pero primero se recomienda hacer una prueba en una zona pequeña.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>¿Hacen envíos?</h4>
+        <p>Sí, puedes coordinar tu pedido y envío por WhatsApp o por mensaje directo.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>¿Qué incluye el kit?</h4>
+        <p>Puede incluir la solución Sneak Clean, cepillo premium y toalla de microfibra.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Sneak Clean — Solución para la limpieza de sneakers
+  </footer>
 
 </body>
 </html>
