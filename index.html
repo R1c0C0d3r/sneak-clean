@@ -1,724 +1,623 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sneak Clean | Cuida tus pasos</title>
-  <meta name="description" content="Marca mexicana dedicada al cuidado de sneakers. Solución no tóxica pensada para el mantenimiento continuo sin dañar sus materiales." />
-  <style>
-    :root {
-      --bg-1: #090816;
-      --bg-2: #13112a;
-      --panel: rgba(24, 24, 44, 0.78);
-      --panel-border: rgba(255,255,255,0.1);
-      --text: #ffffff;
-      --muted: #d8d8e8;
-      --green: #41b75d;
-      --green-dark: #2f9147;
-      --blue: #00a7ff;
-      --pink: #ff2e88;
-      --yellow: #ffd43b;
-      --orange: #ff7a00;
-      --purple: #9d4dff;
-      --shadow: 0 12px 30px rgba(0,0,0,.35);
-      --radius: 24px;
-      --radius-sm: 16px;
-      --max: 1280px;
-    }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sneak Clean | Cuida tus pasos</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Black+Han+Sans&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --dark: #1a1520;
+    --darker: #110e18;
+    --card: #1e1828;
+    --card2: #211c2e;
+    --green: #3db853;
+    --green2: #2a9140;
+    --text: #ffffff;
+    --muted: #b8b0cc;
+    --border: rgba(255,255,255,0.08);
+  }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at 20% 20%, rgba(157,77,255,.20), transparent 20%),
-        radial-gradient(circle at 75% 15%, rgba(0,167,255,.18), transparent 20%),
-        radial-gradient(circle at 85% 80%, rgba(255,46,136,.16), transparent 22%),
-        linear-gradient(180deg, var(--bg-1), var(--bg-2));
-      min-height: 100vh;
-    }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
 
-    body::before,
-    body::after {
-      content: "";
-      position: fixed;
-      inset: auto;
-      width: 360px;
-      height: 360px;
-      filter: blur(4px);
-      pointer-events: none;
-      opacity: .8;
-      z-index: 0;
-    }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background-color: var(--darker);
+    color: var(--text);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+  }
 
-    body::before {
-      left: -60px;
-      bottom: 100px;
-      background: radial-gradient(circle, rgba(0,167,255,.6) 0 10px, transparent 12px),
-                  radial-gradient(circle, rgba(255,212,59,.7) 0 8px, transparent 10px),
-                  radial-gradient(circle, rgba(255,46,136,.7) 0 8px, transparent 10px),
-                  radial-gradient(circle, rgba(157,77,255,.65) 0 7px, transparent 9px);
-      background-size: 80px 80px, 90px 90px, 110px 110px, 130px 130px;
-      background-position: 0 0, 30px 10px, 60px 35px, 100px 60px;
-      transform: rotate(-8deg);
-    }
+  /* === TEXTURE BACKGROUND === */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 1;
+  }
 
-    body::after {
-      right: -90px;
-      top: 180px;
-      background: radial-gradient(circle, rgba(255,46,136,.65) 0 10px, transparent 12px),
-                  radial-gradient(circle, rgba(0,167,255,.6) 0 8px, transparent 10px),
-                  radial-gradient(circle, rgba(255,122,0,.65) 0 8px, transparent 10px),
-                  radial-gradient(circle, rgba(255,212,59,.65) 0 7px, transparent 9px);
-      background-size: 90px 90px, 120px 120px, 110px 110px, 140px 140px;
-      background-position: 0 0, 40px 15px, 85px 40px, 120px 70px;
-      transform: rotate(14deg);
-    }
+  /* === PAINT SPLASHES === */
+  .splash {
+    position: fixed;
+    pointer-events: none;
+    z-index: 0;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.18;
+  }
+  .splash-1 { width: 500px; height: 300px; background: radial-gradient(ellipse, #00c6ff, transparent 70%); top: -80px; left: -100px; transform: rotate(-20deg); }
+  .splash-2 { width: 400px; height: 250px; background: radial-gradient(ellipse, #ff2e88, transparent 70%); top: 60px; right: -80px; transform: rotate(15deg); }
+  .splash-3 { width: 350px; height: 200px; background: radial-gradient(ellipse, #ffd43b, transparent 70%); bottom: 200px; left: 50px; transform: rotate(10deg); }
+  .splash-4 { width: 450px; height: 280px; background: radial-gradient(ellipse, #9d4dff, transparent 70%); bottom: -60px; right: 100px; transform: rotate(-15deg); }
+  .splash-5 { width: 200px; height: 200px; background: radial-gradient(ellipse, #ff7a00, transparent 70%); top: 40%; left: 30%; }
 
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
+  /* Small paint dots scattered */
+  .dots-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image:
+      radial-gradient(circle, #00c6ff 0 3px, transparent 4px),
+      radial-gradient(circle, #ff2e88 0 4px, transparent 5px),
+      radial-gradient(circle, #ffd43b 0 3px, transparent 4px),
+      radial-gradient(circle, #3db853 0 4px, transparent 5px),
+      radial-gradient(circle, #9d4dff 0 3px, transparent 4px),
+      radial-gradient(circle, #ff7a00 0 3px, transparent 4px),
+      radial-gradient(circle, #00c6ff 0 2px, transparent 3px),
+      radial-gradient(circle, #ff2e88 0 2px, transparent 3px),
+      radial-gradient(circle, #ffd43b 0 3px, transparent 4px),
+      radial-gradient(circle, #3db853 0 2px, transparent 3px),
+      radial-gradient(circle, #ff7a00 0 4px, transparent 5px),
+      radial-gradient(circle, #9d4dff 0 2px, transparent 3px);
+    background-size: 180px 220px, 240px 180px, 300px 260px, 220px 300px, 280px 200px, 260px 240px, 150px 190px, 340px 280px, 200px 160px, 260px 320px, 190px 250px, 310px 200px;
+    background-position:
+      15px 40px, 80px 20px, 160px 80px, 30px 140px, 200px 50px, 120px 160px,
+      250px 100px, 60px 200px, 320px 30px, 180px 180px, 90px 280px, 350px 140px;
+    opacity: 0.55;
+  }
 
-    .container {
-      width: min(var(--max), calc(100% - 32px));
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
+  /* === LAYOUT === */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+  }
 
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 22px 0;
-    }
+  /* === NAV === */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+    position: relative;
+    z-index: 10;
+  }
 
-    .brand {
-      font-size: clamp(28px, 4vw, 58px);
-      font-weight: 900;
-      line-height: .9;
-      font-style: italic;
-      position: relative;
-      display: inline-block;
-      text-shadow: 0 4px 16px rgba(0,0,0,.25);
-    }
+  .brand {
+    position: relative;
+    display: inline-block;
+  }
 
-    .brand::before,
-    .brand::after {
-      content: "";
-      position: absolute;
-      inset: 50% auto auto 50%;
-      width: 112%;
-      height: 112%;
-      transform: translate(-50%, -50%);
-      background:
-        radial-gradient(circle at 5% 50%, var(--blue) 0 6px, transparent 7px),
-        radial-gradient(circle at 18% 18%, var(--purple) 0 5px, transparent 6px),
-        radial-gradient(circle at 90% 22%, var(--pink) 0 6px, transparent 7px),
-        radial-gradient(circle at 96% 55%, var(--orange) 0 6px, transparent 7px),
-        radial-gradient(circle at 85% 84%, var(--yellow) 0 6px, transparent 7px),
-        radial-gradient(circle at 12% 86%, var(--blue) 0 6px, transparent 7px);
-      filter: blur(.2px);
-      z-index: -1;
-    }
+  .brand-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    line-height: 0.88;
+    letter-spacing: 2px;
+    color: white;
+    text-shadow: 3px 3px 0 rgba(0,0,0,0.5), 0 0 30px rgba(255,255,255,0.1);
+    position: relative;
+    z-index: 2;
+    display: block;
+  }
 
-    .menu {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      color: #f5f5ff;
-      font-size: 1.1rem;
-      font-weight: 700;
-    }
+  /* Paint splash behind logo */
+  .brand::before {
+    content: "";
+    position: absolute;
+    inset: -14px -20px -10px -16px;
+    background:
+      radial-gradient(ellipse at 10% 80%, rgba(0,198,255,0.7) 0 8px, transparent 9px),
+      radial-gradient(ellipse at 85% 15%, rgba(255,46,136,0.7) 0 7px, transparent 8px),
+      radial-gradient(ellipse at 20% 20%, rgba(255,212,59,0.65) 0 6px, transparent 7px),
+      radial-gradient(ellipse at 90% 75%, rgba(61,184,83,0.7) 0 8px, transparent 9px),
+      radial-gradient(ellipse at 50% 5%, rgba(157,77,255,0.65) 0 6px, transparent 7px),
+      radial-gradient(ellipse at 5% 50%, rgba(255,122,0,0.7) 0 7px, transparent 8px),
+      radial-gradient(ellipse at 75% 90%, rgba(0,198,255,0.6) 0 5px, transparent 6px),
+      radial-gradient(ellipse at 40% 95%, rgba(255,46,136,0.6) 0 5px, transparent 6px);
+    z-index: 1;
+    filter: blur(0.5px);
+  }
 
-    .menu a { opacity: .92; }
-    .menu a:hover { color: var(--yellow); }
+  /* Underline rainbow */
+  .brand::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #00c6ff, #9d4dff, #ff2e88, #ffd43b, #3db853, #ff7a00);
+    border-radius: 2px;
+  }
 
-    .cart-btn,
-    .btn {
-      border: 0;
-      cursor: pointer;
-      border-radius: 16px;
-      font-weight: 800;
-      transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
-    }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 700;
+  }
 
-    .cart-btn {
-      background: linear-gradient(180deg, #53cd70, var(--green-dark));
-      color: white;
-      padding: 16px 26px;
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      box-shadow: var(--shadow);
-      position: relative;
-      font-size: 1.05rem;
-    }
+  .nav-links a {
+    color: #e0daea;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: #ffd43b; }
 
-    .cart-btn:hover,
-    .btn:hover { transform: translateY(-2px) scale(1.01); }
+  .nav-search-icon {
+    color: #c0b8d4;
+    cursor: pointer;
+    font-size: 1rem;
+  }
 
-    .cart-count {
-      position: absolute;
-      right: -8px;
-      top: -8px;
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: #a6e56a;
-      color: #0d220f;
-      font-size: .95rem;
-      font-weight: 900;
-      box-shadow: 0 8px 18px rgba(0,0,0,.2);
-    }
+  .cart-btn {
+    background: linear-gradient(180deg, #4dc866, var(--green2));
+    color: white;
+    border: none;
+    border-radius: 14px;
+    padding: 12px 22px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+    transition: transform 0.15s;
+  }
+  .cart-btn:hover { transform: translateY(-2px); }
 
-    .hero {
-      display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 30px;
-      align-items: center;
-      padding: 18px 0 40px;
-    }
+  .cart-count {
+    position: absolute;
+    top: -8px; right: -8px;
+    width: 24px; height: 24px;
+    background: #a8e46a;
+    color: #0d2010;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    font-weight: 900;
+    display: grid;
+    place-items: center;
+  }
 
-    .slogan {
-      font-size: clamp(46px, 6vw, 88px);
-      font-weight: 900;
-      font-style: italic;
-      margin: 0 0 18px;
-      line-height: .96;
-      position: relative;
-      display: inline-block;
-    }
+  /* === HERO === */
+  .hero {
+    text-align: center;
+    padding: 48px 0 30px;
+  }
 
-    .slogan::after {
-      content: "";
-      display: block;
-      width: 72%;
-      height: 5px;
-      margin-top: 8px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--blue), var(--purple), var(--pink), var(--yellow));
-      box-shadow: 0 0 20px rgba(255,255,255,.15);
-    }
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(56px, 8vw, 100px);
+    letter-spacing: 6px;
+    line-height: 1;
+    color: white;
+    text-shadow: 0 4px 24px rgba(0,0,0,0.5), 0 0 60px rgba(255,255,255,0.08);
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+  }
 
-    .hero h2 {
-      font-size: clamp(26px, 3vw, 50px);
-      line-height: 1.15;
-      margin: 0 0 18px;
-      max-width: 680px;
-    }
+  /* Rainbow underline on title */
+  .hero-title::after {
+    content: "";
+    display: block;
+    height: 5px;
+    margin-top: 6px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, #00c6ff, #ff2e88, #ffd43b, #9d4dff, #3db853);
+    box-shadow: 0 0 18px rgba(255,255,255,0.15);
+  }
 
-    .hero h2 strong,
-    .hero p strong,
-    .feature h3 strong { color: white; }
+  .hero-sub {
+    font-size: clamp(15px, 2vw, 18px);
+    line-height: 1.7;
+    color: #d0c8e0;
+    max-width: 600px;
+    margin: 0 auto 32px;
+  }
+  .hero-sub strong { color: white; }
 
-    .hero p {
-      color: var(--muted);
-      font-size: clamp(17px, 1.4vw, 24px);
-      line-height: 1.6;
-      max-width: 760px;
-      margin: 0 0 28px;
-    }
+  /* === SEARCH BAR === */
+  .search-bar {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 44px;
+  }
 
-    .hero-actions {
-      display: flex;
-      gap: 14px;
-      align-items: center;
-      flex-wrap: wrap;
-      margin-bottom: 24px;
-    }
+  .search-wrap {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    gap: 10px;
+    min-width: 340px;
+  }
 
-    .btn {
-      background: linear-gradient(180deg, #52ca6e, #33994d);
-      color: white;
-      padding: 16px 24px;
-      font-size: 1rem;
-      box-shadow: var(--shadow);
-    }
+  .search-wrap span { color: #a090c0; font-size: 1rem; }
 
-    .btn.secondary {
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.1);
-      color: white;
-      box-shadow: none;
-    }
+  .search-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    padding: 14px 0;
+    width: 100%;
+  }
+  .search-input::placeholder { color: #9080b0; }
 
-    .hero-badges {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      color: #eef9ea;
-      font-weight: 700;
-      font-size: .98rem;
-    }
+  .search-btn {
+    background: linear-gradient(180deg, #4dc866, var(--green2));
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 14px 26px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+  }
+  .search-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
 
-    .hero-badges span {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.08);
-      padding: 10px 14px;
-      border-radius: 999px;
-      backdrop-filter: blur(8px);
-    }
+  /* === CATALOG === */
+  .catalog-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.4rem;
+    letter-spacing: 3px;
+    margin-bottom: 18px;
+    color: white;
+  }
 
-    .product-showcase {
-      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      border: 1px solid var(--panel-border);
-      border-radius: 30px;
-      padding: 24px;
-      position: relative;
-      min-height: 520px;
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
+  .products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 30px;
+  }
 
-    .product-showcase::before {
-      content: "";
-      position: absolute;
-      inset: auto auto 0 0;
-      width: 240px;
-      height: 240px;
-      background: radial-gradient(circle, rgba(255,46,136,.18), transparent 65%);
-      filter: blur(4px);
-    }
+  .product-card {
+    background: linear-gradient(160deg, #221c32, #1a1525);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 18px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    position: relative;
+    overflow: hidden;
+  }
 
-    .showcase-grid {
-      height: 100%;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: end;
-      gap: 16px;
-    }
+  .product-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, transparent 60%);
+    pointer-events: none;
+  }
 
-    .showcase-main {
-      align-self: center;
-      padding: 20px;
-    }
+  .product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px rgba(0,0,0,0.5);
+  }
 
-    .showcase-side {
-      display: grid;
-      gap: 12px;
-      align-items: end;
-      padding-bottom: 8px;
-    }
+  .product-sku {
+    position: absolute;
+    bottom: 10px;
+    right: 12px;
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.2);
+    font-family: monospace;
+  }
 
-    .showcase-card {
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 22px;
-      padding: 16px;
-      backdrop-filter: blur(8px);
-    }
+  .product-media {
+    background: linear-gradient(160deg, #2a2240, #1e1830);
+    border-radius: 14px;
+    min-height: 160px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 14px;
+    font-size: 5rem;
+    overflow: hidden;
+    position: relative;
+  }
 
-    .showcase-card h3 {
-      margin: 0 0 8px;
-      font-size: 1rem;
-    }
+  .product-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center bottom, rgba(61,184,83,0.08), transparent 70%);
+  }
 
-    .section {
-      padding: 22px 0;
-    }
+  .product-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.55rem;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
 
-    .section-title {
-      font-size: clamp(28px, 3vw, 48px);
-      margin: 0 0 20px;
-    }
+  .product-card p {
+    color: var(--muted);
+    font-size: 0.88rem;
+    line-height: 1.5;
+    flex-grow: 1;
+    margin-bottom: 16px;
+  }
 
-    .features {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-      margin-top: 10px;
-    }
+  .product-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
 
-    .feature,
-    .product-card {
-      background: var(--panel);
-      border: 1px solid var(--panel-border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(10px);
-    }
+  .price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 1px;
+    color: white;
+  }
+  .price sup { font-size: 1rem; vertical-align: super; }
 
-    .feature {
-      padding: 22px;
-      min-height: 220px;
-    }
+  .add-btn {
+    background: linear-gradient(180deg, #4dc866, #2a9140);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 16px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: transform 0.15s;
+    white-space: nowrap;
+  }
+  .add-btn:hover { transform: scale(1.04); }
 
-    .icon {
-      width: 58px;
-      height: 58px;
-      border-radius: 18px;
-      display: grid;
-      place-items: center;
-      font-size: 1.7rem;
-      margin-bottom: 14px;
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.09);
-    }
+  /* === PAGINATION === */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 0 50px;
+  }
 
-    .feature h3 {
-      margin: 0 0 10px;
-      font-size: 1.5rem;
-      line-height: 1.15;
-    }
+  .page-btn {
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.06);
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    font-size: 0.95rem;
+    transition: background 0.15s;
+  }
+  .page-btn:hover, .page-btn.active {
+    background: linear-gradient(180deg, #4dc866, #2a9140);
+    border-color: transparent;
+  }
 
-    .feature p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.55;
-    }
+  /* === TOAST === */
+  .toast {
+    position: fixed; bottom: 24px; right: 24px;
+    background: linear-gradient(135deg, #3db853, #2a9140);
+    color: white;
+    padding: 13px 20px;
+    border-radius: 14px;
+    font-weight: 800;
+    font-size: 0.95rem;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: all 0.3s;
+    pointer-events: none;
+  }
+  .toast.show { opacity: 1; transform: translateY(0); }
 
-    .catalog-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-      margin-bottom: 18px;
-      flex-wrap: wrap;
-    }
+  .hidden { display: none !important; }
 
-    .search-wrap {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .search-input {
-      min-width: 320px;
-      background: rgba(255,255,255,.07);
-      color: white;
-      border: 1px solid rgba(255,255,255,.09);
-      border-radius: 18px;
-      padding: 15px 16px;
-      outline: none;
-      font-size: 1rem;
-    }
-
-    .search-input::placeholder { color: #c8c8db; }
-
-    .products {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-    }
-
-    .product-card {
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      min-height: 440px;
-    }
-
-    .product-media {
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 20px;
-      min-height: 210px;
-      display: grid;
-      place-items: center;
-      padding: 18px;
-      margin-bottom: 14px;
-      overflow: hidden;
-    }
-
-    .product-media img {
-      max-height: 185px;
-      width: auto;
-      object-fit: contain;
-      filter: drop-shadow(0 14px 20px rgba(0,0,0,.28));
-    }
-
-    .product-card h3 {
-      font-size: 1.9rem;
-      line-height: 1.05;
-      margin: 6px 0 10px;
-    }
-
-    .product-card p {
-      margin: 0 0 14px;
-      color: var(--muted);
-      line-height: 1.55;
-      flex-grow: 1;
-    }
-
-    .product-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: auto;
-    }
-
-    .price {
-      font-size: 2rem;
-      font-weight: 900;
-      letter-spacing: .3px;
-    }
-
-    .pill-btn {
-      background: linear-gradient(180deg, #54ce71, #379e50);
-      color: white;
-      border: 0;
-      border-radius: 999px;
-      padding: 13px 18px;
-      font-weight: 800;
-      cursor: pointer;
-    }
-
-    .footer-cta {
-      margin: 34px 0 60px;
-      padding: 24px;
-      border-radius: 24px;
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border: 1px solid rgba(255,255,255,.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .footer-cta h3 {
-      margin: 0 0 6px;
-      font-size: clamp(24px, 2.2vw, 38px);
-    }
-
-    .footer-cta p {
-      margin: 0;
-      color: var(--muted);
-      max-width: 680px;
-    }
-
-    .hidden { display: none !important; }
-
-    @media (max-width: 1180px) {
-      .hero,
-      .features,
-      .products { grid-template-columns: 1fr 1fr; }
-      .hero { gap: 24px; }
-    }
-
-    @media (max-width: 860px) {
-      .nav { flex-wrap: wrap; }
-      .menu { order: 3; width: 100%; justify-content: center; }
-      .hero,
-      .features,
-      .products { grid-template-columns: 1fr; }
-      .search-input { min-width: 100%; width: 100%; }
-      .catalog-head { align-items: stretch; }
-      .product-showcase { min-height: auto; }
-      .showcase-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+  @media(max-width:760px) {
+    .products { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+    .search-wrap { min-width: 200px; }
+  }
+  @media(max-width:500px) {
+    .products { grid-template-columns: 1fr; }
+  }
+</style>
 </head>
 <body>
-  <header class="container">
-    <nav class="nav">
-      <a href="#inicio" class="brand" aria-label="Sneak Clean">SNEAK<br>CLEAN</a>
 
-      <div class="menu">
-        <a href="#inicio">Inicio</a>
-        <a href="#beneficios">Beneficios</a>
-        <a href="#catalogo">Catálogo</a>
-        <a href="#contacto">Contacto</a>
+<!-- Background effects -->
+<div class="splash splash-1"></div>
+<div class="splash splash-2"></div>
+<div class="splash splash-3"></div>
+<div class="splash splash-4"></div>
+<div class="splash splash-5"></div>
+<div class="dots-layer"></div>
+
+<div class="container">
+
+  <!-- NAV -->
+  <nav>
+    <div class="brand">
+      <span class="brand-text">SNEAK<br>CLEAN</span>
+    </div>
+    <div class="nav-links">
+      <a href="#inicio">Inicio</a>
+      <a href="#beneficios">Beneficios</a>
+      <a href="#contacto">Contacto</a>
+      <span class="nav-search-icon">🔍</span>
+    </div>
+    <button class="cart-btn" id="openCartBtn">
+      <span>🛒</span>
+      <span>Carrito</span>
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <h1 class="hero-title">¡CUIDA TUS PASOS!</h1>
+    <p class="hero-sub">
+      Somos una <strong>marca mexicana</strong> dedicada al <strong>cuidado de sneakers.</strong><br>
+      Nuestra solución <strong>no es tóxica</strong>, pensada en el mantenimiento<br>
+      continuo de <strong>sneakers</strong> sin dañar sus <strong>materiales.</strong>
+    </p>
+
+    <!-- SEARCH -->
+    <div class="search-bar">
+      <div class="search-wrap">
+        <span>🔍</span>
+        <input id="searchInput" class="search-input" type="text" placeholder="Buscar productos..."/>
       </div>
+      <button class="search-btn" id="searchBtn">Buscar</button>
+    </div>
+  </section>
 
-      <button class="cart-btn" id="openCartBtn" aria-label="Abrir carrito">
-        <span style="font-size:1.2rem">🛒</span>
-        <span>Carrito</span>
-        <span class="cart-count" id="cartCount">0</span>
-      </button>
-    </nav>
-  </header>
+  <!-- CATALOG -->
+  <section id="catalogo">
+    <h2 class="catalog-title">Catálogo</h2>
+    <div class="products" id="productGrid">
 
-  <main>
-    <section class="container hero" id="inicio">
-      <div>
-        <h1 class="slogan">¡CUIDA TUS PASOS!</h1>
-        <h2>La solución <strong>profesional</strong> para limpieza de sneakers.</h2>
-        <p>
-          Somos una <strong>marca mexicana</strong> dedicada al cuidado de sneakers.
-          Nuestra solución <strong>no es tóxica</strong>, pensada en el mantenimiento continuo
-          de sneakers sin dañar sus materiales.
-        </p>
-
-        <div class="hero-actions">
-          <a class="btn" href="#catalogo">Ver catálogo</a>
-          <button class="btn secondary" id="addKitHero">Agregar kit completo</button>
+      <article class="product-card" data-name="sneak clean 250 ml frasco limpiador">
+        <div class="product-media">🧴</div>
+        <h3>SNEAK CLEAN – 250 ml</h3>
+        <p>Solución especializada para todo tipo de materiales.</p>
+        <div class="product-bottom">
+          <span class="price"><sup>$</sup>0 <small style="font-size:.6em;color:var(--muted);">+</small></span>
+          <button class="add-btn add-to-cart" data-product="Sneak Clean 250 ml">Agregar al carrito</button>
         </div>
+        <span class="product-sku">ABC126</span>
+      </article>
 
-        <div class="hero-badges">
-          <span>🚚 Envíos a todo México</span>
-          <span>🧴 Solución no tóxica</span>
-          <span>🛍️ Ideal para distribuidores</span>
+      <article class="product-card" data-name="cepillo suave cerdas blancas">
+        <div class="product-media">🖌️</div>
+        <h3>Cepillo Suave</h3>
+        <p>Ideal para gamuza, malla y superficies delicadas.</p>
+        <div class="product-bottom">
+          <span class="price"><sup>$</sup>0 <small style="font-size:.6em;color:var(--muted);">+</small></span>
+          <button class="add-btn add-to-cart" data-product="Cepillo Suave">Agregar al carrito</button>
         </div>
-      </div>
+        <span class="product-sku">ABC122</span>
+      </article>
 
-      <div class="product-showcase" aria-label="Productos Sneak Clean">
-        <div class="showcase-grid">
-          <div class="showcase-main">
-            <img src="images/bottle-250ml.png" alt="Frasco Sneak Clean 250 ml" />
-          </div>
-          <div class="showcase-side">
-            <div class="showcase-card">
-              <h3>Kit completo</h3>
-              <img src="images/kit-bag.png" alt="Kit completo Sneak Clean en bolsa con logo" />
-            </div>
-            <div class="showcase-card" style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; align-items:center;">
-              <img src="images/brush-soft.png" alt="Cepillo suave Sneak Clean" />
-              <img src="images/towel-microfiber.png" alt="Toalla de microfibra Sneak Clean" />
-            </div>
-          </div>
+      <article class="product-card" data-name="kit completo bolsa logo frasco cepillo toalla">
+        <div class="product-media">👟</div>
+        <h3>Kit Completo</h3>
+        <p>Incluye limpiador 250 ml, cepillo y toalla en una práctica bolsa.</p>
+        <div class="product-bottom">
+          <span class="price"><sup>$</sup>0 <small style="font-size:.6em;color:var(--muted);">+</small></span>
+          <button class="add-btn add-to-cart" data-product="Kit Completo">Agregar al carrito</button>
         </div>
-      </div>
-    </section>
+        <span class="product-sku">ABC125</span>
+      </article>
 
-    <section class="container section" id="beneficios">
-      <h2 class="section-title">Por qué Sneak Clean es ideal para tu negocio</h2>
-      <div class="features">
-        <article class="feature">
-          <div class="icon">🧪</div>
-          <h3>Fórmula <strong>especializada</strong></h3>
-          <p>Solución no tóxica compatible con piel, gamuza, textiles y sintéticos para una limpieza segura y constante.</p>
-        </article>
-        <article class="feature">
-          <div class="icon">🧰</div>
-          <h3><strong>Kit completo</strong> listo para retail</h3>
-          <p>Incluye frasco de 250 ml, cepillo suave y toalla de microfibra. Se entrega en bolsa con logo Sneak Clean.</p>
-        </article>
-        <article class="feature">
-          <div class="icon">📈</div>
-          <h3>Alta rotación <strong>en retail</strong></h3>
-          <p>Producto visualmente atractivo y fácil de explicar al cliente final, ideal para tiendas especializadas en sneakers.</p>
-        </article>
-        <article class="feature">
-          <div class="icon">🇲🇽</div>
-          <h3>Marca <strong>mexicana</strong></h3>
-          <p>Diseñada para el mercado nacional, con enfoque en cuidado continuo, materiales delicados y presencia comercial moderna.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="container section" id="catalogo">
-      <div class="catalog-head">
-        <h2 class="section-title" style="margin:0;">Catálogo</h2>
-        <div class="search-wrap">
-          <input id="searchInput" class="search-input" type="text" placeholder="Buscar productos..." />
-          <button class="btn" id="searchBtn">Buscar</button>
+      <article class="product-card" data-name="toalla microfibra paño gris">
+        <div class="product-media">🧤</div>
+        <h3>Toalla de Microfibra</h3>
+        <p>Paño premium para acabado final durante el mantenimiento del sneaker.</p>
+        <div class="product-bottom">
+          <span class="price"><sup>$</sup>0 <small style="font-size:.6em;color:var(--muted);">+</small></span>
+          <button class="add-btn add-to-cart" data-product="Toalla de Microfibra">Agregar al carrito</button>
         </div>
-      </div>
+        <span class="product-sku">ABC128</span>
+      </article>
 
-      <div class="products" id="productGrid">
-        <article class="product-card" data-name="sneak clean 250 ml frasco limpiador">
-          <div class="product-media">
-            <img src="images/bottle-250ml.png" alt="Sneak Clean 250 ml" />
-          </div>
-          <h3>Sneak Clean 250 ml</h3>
-          <p>Solución especializada para limpieza continua de sneakers sin dañar materiales delicados.</p>
-          <div class="product-bottom">
-            <span class="price">$0</span>
-            <button class="pill-btn add-to-cart" data-product="Sneak Clean 250 ml">Agregar al carrito</button>
-          </div>
-        </article>
+    </div>
 
-        <article class="product-card" data-name="cepillo suave cerdas blancas">
-          <div class="product-media">
-            <img src="images/brush-soft.png" alt="Cepillo suave con cerdas blancas" />
-          </div>
-          <h3>Cepillo Suave</h3>
-          <p>Ideal para gamuza, malla y superficies delicadas. Limpia sin maltratar fibras ni acabados.</p>
-          <div class="product-bottom">
-            <span class="price">$0</span>
-            <button class="pill-btn add-to-cart" data-product="Cepillo Suave">Agregar al carrito</button>
-          </div>
-        </article>
+    <!-- PAGINATION -->
+    <div class="pagination">
+      <button class="page-btn" id="prevPage">&#8249;</button>
+      <button class="page-btn active" data-page="1">1</button>
+      <button class="page-btn" data-page="2">2</button>
+      <button class="page-btn" id="nextPage">&#8250;</button>
+    </div>
+  </section>
 
-        <article class="product-card" data-name="toalla microfibra paño gris">
-          <div class="product-media">
-            <img src="images/towel-microfiber.png" alt="Toalla de microfibra gris" />
-          </div>
-          <h3>Toalla de Microfibra</h3>
-          <p>Paño premium para secar, retirar suciedad y dar acabado final durante el mantenimiento del sneaker.</p>
-          <div class="product-bottom">
-            <span class="price">$0</span>
-            <button class="pill-btn add-to-cart" data-product="Toalla de Microfibra">Agregar al carrito</button>
-          </div>
-        </article>
+</div>
 
-        <article class="product-card" data-name="kit completo bolsa logo frasco cepillo toalla">
-          <div class="product-media">
-            <img src="images/kit-bag.png" alt="Kit completo con frasco, cepillo y toalla en bolsa con logo Sneak Clean" />
-          </div>
-          <h3>Kit Completo</h3>
-          <p>Incluye frasco 250 ml, cepillo suave y toalla de microfibra. Se envía en bolsa con logo Sneak Clean.</p>
-          <div class="product-bottom">
-            <span class="price">$0</span>
-            <button class="pill-btn add-to-cart" data-product="Kit Completo">Agregar al carrito</button>
-          </div>
-        </article>
-      </div>
-    </section>
+<div class="toast" id="toast"></div>
 
-    <section class="container">
-      <div class="footer-cta" id="contacto">
-        <div>
-          <h3>¿Listo para distribuir Sneak Clean?</h3>
-          <p>Producto ideal para tiendas de sneakers, boutiques y distribuidores que buscan una presentación moderna y una solución segura.</p>
-        </div>
-        <a class="btn" href="mailto:ventas@sneakclean.mx">Contáctanos</a>
-      </div>
-    </section>
-  </main>
+<script>
+  const cartCount = document.getElementById('cartCount');
+  const toast = document.getElementById('toast');
+  const searchInput = document.getElementById('searchInput');
+  const productCards = document.querySelectorAll('.product-card');
+  let count = 0, cart = {};
 
-  <script>
-    const cartCount = document.getElementById('cartCount');
-    const addButtons = document.querySelectorAll('.add-to-cart');
-    const addKitHero = document.getElementById('addKitHero');
-    const openCartBtn = document.getElementById('openCartBtn');
-    const searchInput = document.getElementById('searchInput');
-    const searchBtn = document.getElementById('searchBtn');
-    const productCards = document.querySelectorAll('.product-card');
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2200);
+  }
 
-    let count = 0;
+  function addToCart(name) {
+    count++;
+    cart[name] = (cart[name] || 0) + 1;
+    cartCount.textContent = count;
+    showToast('✅ ' + name + ' agregado');
+  }
 
-    function updateCart(productName) {
-      count += 1;
-      cartCount.textContent = count;
-      if (productName) {
-        openCartBtn.setAttribute('title', productName + ' agregado');
-      }
-    }
+  document.querySelectorAll('.add-to-cart').forEach(btn => {
+    btn.addEventListener('click', () => addToCart(btn.dataset.product));
+  });
 
-    addButtons.forEach((btn) => {
-      btn.addEventListener('click', () => updateCart(btn.dataset.product));
+  document.getElementById('openCartBtn').addEventListener('click', () => {
+    if (!count) { showToast('🛒 Carrito vacío'); return; }
+    const lines = Object.entries(cart).map(([k,v]) => `• ${k} ×${v}`).join('\n');
+    alert(`🛒 Carrito (${count} producto${count>1?'s':''})\n\n${lines}`);
+  });
+
+  function filter() {
+    const term = searchInput.value.toLowerCase().trim();
+    productCards.forEach(c => c.classList.toggle('hidden', term !== '' && !c.dataset.name.includes(term)));
+  }
+  document.getElementById('searchBtn').addEventListener('click', filter);
+  searchInput.addEventListener('input', filter);
+
+  // Pagination highlight
+  document.querySelectorAll('[data-page]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-page]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
     });
-
-    addKitHero.addEventListener('click', () => updateCart('Kit Completo'));
-
-    openCartBtn.addEventListener('click', () => {
-      alert('Carrito actual: ' + count + ' producto(s).\n\nMás adelante aquí puedes conectar una tienda real o WhatsApp.');
-    });
-
-    function filterProducts() {
-      const term = searchInput.value.toLowerCase().trim();
-      productCards.forEach((card) => {
-        const name = card.dataset.name;
-        const visible = name.includes(term) || term === '';
-        card.classList.toggle('hidden', !visible);
-      });
-    }
-
-    searchBtn.addEventListener('click', filterProducts);
-    searchInput.addEventListener('input', filterProducts);
-  </script>
+  });
+</script>
 </body>
 </html>
