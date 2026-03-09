@@ -1,122 +1,158 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sneak Clean</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sneak Clean</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background:#0f0f0f;
+    color:white;
+}
+
+header{
+    text-align:center;
+    padding:60px 20px;
+    background:linear-gradient(135deg,#1a1a1a,#000000);
+}
+
+header h1{
+    font-size:50px;
+    margin:0;
+    letter-spacing:3px;
+}
+
+header p{
+    color:#bbbbbb;
+}
+
+section{
+    padding:60px 20px;
+    max-width:1000px;
+    margin:auto;
+}
+
+h2{
+    text-align:center;
+    margin-bottom:40px;
+    font-size:32px;
+}
+
+.card-container{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.card{
+    background:#1a1a1a;
+    padding:25px;
+    border-radius:15px;
+    width:250px;
+    box-shadow:0 0 20px rgba(0,0,0,0.5);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.price{
+    font-size:22px;
+    font-weight:bold;
+    margin-top:10px;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:15px;
+    padding:10px 20px;
+    background:#ff0077;
+    color:white;
+    text-decoration:none;
+    border-radius:20px;
+}
+
+.steps{
+    text-align:center;
+    line-height:2;
+    font-size:18px;
+}
+
+.contact{
+    text-align:center;
+    line-height:2;
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    background:#000;
+    color:#777;
+}
+</style>
 </head>
-<body bgcolor="#111111" text="white">
 
-  <center>
+<body>
+
+<header>
     <h1>SNEAK CLEAN</h1>
-    <p>Solución para la limpieza de sneakers</p>
-    <hr width="80%">
-  </center>
+    <p>Solución premium para la limpieza de sneakers</p>
+</header>
 
-  <center>
-    <h2>Bienvenido a Sneak Clean</h2>
-    <p>
-      Mantén tus sneakers limpios, frescos y con mejor apariencia
-      con nuestra solución especializada.
-    </p>
-  </center>
-
-  <hr width="80%">
-
-  <center>
+<section>
     <h2>Productos</h2>
-  </center>
+    <div class="card-container">
 
-  <table border="1" width="80%" align="center" cellpadding="10" cellspacing="0">
-    <tr>
-      <td align="center"><b>Producto</b></td>
-      <td align="center"><b>Descripción</b></td>
-      <td align="center"><b>Precio</b></td>
-    </tr>
-    <tr>
-      <td align="center">Sneak Clean 250 ml</td>
-      <td align="center">Solución para limpiar sneakers y tenis</td>
-      <td align="center">$149 MXN</td>
-    </tr>
-    <tr>
-      <td align="center">Cepillo Premium</td>
-      <td align="center">Cepillo suave para no dañar el material</td>
-      <td align="center">$79 MXN</td>
-    </tr>
-    <tr>
-      <td align="center">Toalla de microfibra</td>
-      <td align="center">Ideal para secar y dar acabado limpio</td>
-      <td align="center">$59 MXN</td>
-    </tr>
-  </table>
+        <div class="card">
+            <h3>Sneak Clean 250ml</h3>
+            <p>Solución profesional para limpiar sneakers y tenis.</p>
+            <div class="price">$149 MXN</div>
+            <a href="#" class="btn">Comprar</a>
+        </div>
 
-  <hr width="80%">
+        <div class="card">
+            <h3>Cepillo Premium</h3>
+            <p>Cerdas suaves que no dañan el material.</p>
+            <div class="price">$79 MXN</div>
+            <a href="#" class="btn">Comprar</a>
+        </div>
 
-  <center>
+        <div class="card">
+            <h3>Toalla Microfibra</h3>
+            <p>Acabado limpio y secado delicado.</p>
+            <div class="price">$59 MXN</div>
+            <a href="#" class="btn">Comprar</a>
+        </div>
+
+    </div>
+</section>
+
+<section>
     <h2>¿Cómo funciona?</h2>
-    <p>1. Aplica la solución en la zona sucia.</p>
-    <p>2. Cepilla suavemente.</p>
-    <p>3. Limpia con la toalla y deja secar.</p>
-  </center>
+    <div class="steps">
+        1️⃣ Aplica la solución en la zona sucia.<br>
+        2️⃣ Cepilla suavemente.<br>
+        3️⃣ Limpia con la toalla y deja secar.
+    </div>
+</section>
 
-  <hr width="80%">
-
-  <center>
+<section>
     <h2>Atención a cliente</h2>
-    <p>WhatsApp: +52 312 000 0000</p>
-    <p>Correo: hola@sneakclean.mx</p>
-    <p>Horario: Lunes a sábado de 9:00 a 19:00</p>
-  </center>
+    <div class="contact">
+        WhatsApp: +52 312 000 0000<br>
+        Correo: hola@sneakclean.mx<br>
+        Lunes a sábado de 9:00 a 19:00
+    </div>
+</section>
 
-  <hr width="80%">
-
-  <center>
-    <h2>Haz tu pedido</h2>
-    <form>
-      <p>Nombre:</p>
-      <input type="text" name="nombre" size="40">
-
-      <p>Teléfono o WhatsApp:</p>
-      <input type="text" name="telefono" size="40">
-
-      <p>Correo electrónico:</p>
-      <input type="text" name="correo" size="40">
-
-      <p>Producto:</p>
-      <select name="producto">
-        <option>Sneak Clean 250 ml</option>
-        <option>Cepillo Premium</option>
-        <option>Toalla de microfibra</option>
-      </select>
-
-      <p>Mensaje:</p>
-      <textarea name="mensaje" rows="5" cols="40"></textarea>
-
-      <p>
-        <input type="submit" value="Enviar pedido">
-      </p>
-    </form>
-  </center>
-
-  <hr width="80%">
-
-  <center>
-    <h2>Preguntas frecuentes</h2>
-    <p><b>¿Sirve para tenis blancos?</b></p>
-    <p>Sí, ayuda a remover suciedad común en sneakers blancos.</p>
-
-    <p><b>¿Puedo usarlo en materiales delicados?</b></p>
-    <p>Sí, pero primero prueba en una parte pequeña.</p>
-
-    <p><b>¿Hacen envíos?</b></p>
-    <p>Sí, puedes pedir información por WhatsApp.</p>
-  </center>
-
-  <hr width="80%">
-
-  <center>
-    <p>© 2026 Sneak Clean - Todos los derechos reservados</p>
-  </center>
+<footer>
+    © 2026 Sneak Clean — Cuida tus pasos
+</footer>
 
 </body>
 </html>
