@@ -2,750 +2,890 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sneak Clean | Cuida tus pasos</title>
-  <meta name="description" content="Marca mexicana dedicada al cuidado de sneakers. Solución no tóxica pensada para el mantenimiento continuo sin dañar sus materiales." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Médica de la Paz – Unidad Médica Especializada</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --bg-1: #050510;
-      --bg-2: #0b0a1d;
-      --bg-3: #151233;
-      --panel: rgba(24, 24, 44, 0.78);
-      --panel-border: rgba(255,255,255,0.1);
-      --text: #ffffff;
-      --muted: #d8d8e8;
-      --green: #41b75d;
-      --green-dark: #2f9147;
-      --blue: #00a7ff;
-      --pink: #ff2e88;
-      --yellow: #ffd43b;
-      --orange: #ff7a00;
-      --purple: #9d4dff;
-      --shadow: 0 12px 30px rgba(0,0,0,.35);
-      --radius: 24px;
-      --radius-sm: 16px;
-      --max: 1280px;
+      --blue:       #1a6fc4;
+      --blue-light: #2e8de8;
+      --blue-pale:  #e8f2fc;
+      --teal:       #0d9488;
+      --white:      #ffffff;
+      --off-white:  #f7f9fc;
+      --gray-100:   #eef1f6;
+      --gray-400:   #8fa0b8;
+      --gray-700:   #3a4a60;
+      --dark:       #0e1825;
     }
 
-    * { box-sizing: border-box; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     html { scroll-behavior: smooth; }
 
     body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--text);
-      min-height: 100vh;
-      background:
-        radial-gradient(circle at 12% 18%, rgba(0, 167, 255, 0.18) 0%, transparent 24%),
-        radial-gradient(circle at 22% 70%, rgba(157, 77, 255, 0.20) 0%, transparent 28%),
-        radial-gradient(circle at 78% 20%, rgba(255, 46, 136, 0.16) 0%, transparent 26%),
-        radial-gradient(circle at 88% 72%, rgba(255, 122, 0, 0.12) 0%, transparent 24%),
-        radial-gradient(circle at 55% 40%, rgba(0, 167, 255, 0.10) 0%, transparent 22%),
-        radial-gradient(circle at 48% 82%, rgba(255, 212, 59, 0.08) 0%, transparent 18%),
-        linear-gradient(180deg, var(--bg-1), var(--bg-2) 45%, var(--bg-3));
-      background-attachment: fixed;
-      position: relative;
+      font-family: 'DM Sans', sans-serif;
+      background: var(--off-white);
+      color: var(--gray-700);
       overflow-x: hidden;
     }
 
-    body::before,
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    body::before {
-      background:
-        radial-gradient(circle at 15% 25%, rgba(0,174,239,.18) 0 8%, transparent 28%),
-        radial-gradient(circle at 30% 35%, rgba(157,77,255,.18) 0 10%, transparent 30%),
-        radial-gradient(circle at 70% 22%, rgba(255,46,136,.16) 0 9%, transparent 28%),
-        radial-gradient(circle at 82% 58%, rgba(255,122,0,.10) 0 8%, transparent 24%),
-        radial-gradient(circle at 62% 78%, rgba(255,212,59,.08) 0 7%, transparent 22%);
-      filter: blur(90px);
-      opacity: .95;
-      transform: scale(1.15);
-    }
-
-    body::after {
-      background:
-        radial-gradient(circle at 20% 78%, rgba(157,77,255,.14) 0 8%, transparent 26%),
-        radial-gradient(circle at 42% 18%, rgba(0,167,255,.12) 0 7%, transparent 25%),
-        radial-gradient(circle at 58% 45%, rgba(255,46,136,.10) 0 8%, transparent 24%),
-        radial-gradient(circle at 76% 80%, rgba(0,167,255,.10) 0 6%, transparent 22%),
-        radial-gradient(circle at 92% 30%, rgba(255,212,59,.07) 0 5%, transparent 20%);
-      filter: blur(140px);
-      opacity: .85;
-      transform: scale(1.2);
-    }
-
-    .stars {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      opacity: .45;
-      background-image:
-        radial-gradient(circle at 10% 20%, rgba(255,255,255,.9) 0 1px, transparent 1.6px),
-        radial-gradient(circle at 18% 72%, rgba(255,255,255,.65) 0 1px, transparent 1.6px),
-        radial-gradient(circle at 28% 42%, rgba(255,255,255,.75) 0 1.2px, transparent 1.8px),
-        radial-gradient(circle at 40% 15%, rgba(255,255,255,.55) 0 1px, transparent 1.6px),
-        radial-gradient(circle at 52% 68%, rgba(255,255,255,.8) 0 1px, transparent 1.7px),
-        radial-gradient(circle at 66% 34%, rgba(255,255,255,.55) 0 1px, transparent 1.6px),
-        radial-gradient(circle at 78% 82%, rgba(255,255,255,.75) 0 1.2px, transparent 1.8px),
-        radial-gradient(circle at 86% 24%, rgba(255,255,255,.7) 0 1px, transparent 1.7px),
-        radial-gradient(circle at 94% 58%, rgba(255,255,255,.55) 0 1px, transparent 1.6px),
-        radial-gradient(circle at 72% 10%, rgba(255,255,255,.8) 0 1px, transparent 1.7px);
-    }
-
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
-
-    .container {
-      width: min(var(--max), calc(100% - 32px));
-      margin: 0 auto;
+    /* ── HERO ─────────────────────────────────────────── */
+    header {
       position: relative;
-      z-index: 1;
-    }
-
-    .nav {
+      background: linear-gradient(135deg, #0e1825 0%, #163d6e 55%, #1a6fc4 100%);
+      color: var(--white);
+      min-height: 100vh;
       display: flex;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 22px 0;
-    }
-
-    .brand {
-      font-size: clamp(28px, 4vw, 58px);
-      font-weight: 900;
-      line-height: .9;
-      font-style: italic;
-      position: relative;
-      display: inline-block;
-      text-shadow: 0 4px 16px rgba(0,0,0,.25);
-    }
-
-    .brand::before,
-    .brand::after {
-      content: "";
-      position: absolute;
-      inset: 50% auto auto 50%;
-      width: 112%;
-      height: 112%;
-      transform: translate(-50%, -50%);
-      background:
-        radial-gradient(circle at 5% 50%, var(--blue) 0 6px, transparent 7px),
-        radial-gradient(circle at 18% 18%, var(--purple) 0 5px, transparent 6px),
-        radial-gradient(circle at 90% 22%, var(--pink) 0 6px, transparent 7px),
-        radial-gradient(circle at 96% 55%, var(--orange) 0 6px, transparent 7px),
-        radial-gradient(circle at 85% 84%, var(--yellow) 0 6px, transparent 7px),
-        radial-gradient(circle at 12% 86%, var(--blue) 0 6px, transparent 7px);
-      filter: blur(.2px);
-      z-index: -1;
-    }
-
-    .menu {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      color: #f5f5ff;
-      font-size: 1.1rem;
-      font-weight: 700;
-    }
-
-    .menu a { opacity: .92; }
-    .menu a:hover { color: var(--yellow); }
-
-    .cart-btn,
-    .btn {
-      border: 0;
-      cursor: pointer;
-      border-radius: 16px;
-      font-weight: 800;
-      transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
-    }
-
-    .cart-btn {
-      background: linear-gradient(180deg, #53cd70, var(--green-dark));
-      color: white;
-      padding: 16px 26px;
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      box-shadow: var(--shadow);
-      position: relative;
-      font-size: 1.05rem;
-    }
-
-    .cart-btn:hover,
-    .btn:hover { transform: translateY(-2px) scale(1.01); }
-
-    .cart-count {
-      position: absolute;
-      right: -8px;
-      top: -8px;
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: #a6e56a;
-      color: #0d220f;
-      font-size: .95rem;
-      font-weight: 900;
-      box-shadow: 0 8px 18px rgba(0,0,0,.2);
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 30px;
-      align-items: center;
-      padding: 18px 0 40px;
-    }
-
-    .slogan {
-      font-size: clamp(46px, 6vw, 88px);
-      font-weight: 900;
-      font-style: italic;
-      margin: 0 0 18px;
-      line-height: .96;
-      position: relative;
-      display: inline-block;
-    }
-
-    .slogan::after {
-      content: "";
-      display: block;
-      width: 72%;
-      height: 5px;
-      margin-top: 8px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--blue), var(--purple), var(--pink), var(--yellow));
-      box-shadow: 0 0 20px rgba(255,255,255,.15);
-    }
-
-    .hero h2 {
-      font-size: clamp(26px, 3vw, 50px);
-      line-height: 1.15;
-      margin: 0 0 18px;
-      max-width: 680px;
-    }
-
-    .hero h2 strong,
-    .hero p strong,
-    .feature h3 strong { color: white; }
-
-    .hero p {
-      color: var(--muted);
-      font-size: clamp(17px, 1.4vw, 24px);
-      line-height: 1.6;
-      max-width: 760px;
-      margin: 0 0 28px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 14px;
-      align-items: center;
-      flex-wrap: wrap;
-      margin-bottom: 24px;
-    }
-
-    .btn {
-      background: linear-gradient(180deg, #52ca6e, #33994d);
-      color: white;
-      padding: 16px 24px;
-      font-size: 1rem;
-      box-shadow: var(--shadow);
-    }
-
-    .btn.secondary {
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.1);
-      color: white;
-      box-shadow: none;
-    }
-
-    .hero-badges {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      color: #eef9ea;
-      font-weight: 700;
-      font-size: .98rem;
-    }
-
-    .hero-badges span {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.08);
-      padding: 10px 14px;
-      border-radius: 999px;
-      backdrop-filter: blur(8px);
-    }
-
-    .product-showcase {
-      background: linear-gradient(180deg, rgba(21, 21, 42, 0.82), rgba(18, 18, 34, 0.72));
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 30px;
-      padding: 24px;
-      position: relative;
-      min-height: 520px;
-      box-shadow: var(--shadow);
+      text-align: center;
+      padding: 2rem;
       overflow: hidden;
-      backdrop-filter: blur(14px);
     }
 
-    .product-showcase::before {
-      content: "";
+    header::before {
+      content: '';
       position: absolute;
-      inset: auto auto 0 0;
-      width: 240px;
-      height: 240px;
-      background: radial-gradient(circle, rgba(255,46,136,.18), transparent 65%);
-      filter: blur(4px);
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 70% 30%, rgba(46,141,232,.18) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 20% 80%, rgba(13,148,136,.12) 0%, transparent 70%);
     }
 
-    .showcase-grid {
-      height: 100%;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: end;
-      gap: 16px;
+    /* Animated rings */
+    .ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.06);
+      animation: pulse 8s ease-in-out infinite;
+    }
+    .ring-1 { width: 500px; height: 500px; top: -100px; right: -80px; animation-delay: 0s; }
+    .ring-2 { width: 700px; height: 700px; top: -200px; right: -200px; animation-delay: 2s; }
+    .ring-3 { width: 300px; height: 300px; bottom: -60px; left: -60px; animation-delay: 4s; }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: .5; }
     }
 
-    .showcase-main {
-      align-self: center;
-      padding: 20px;
+    .hero-logo {
+      position: relative;
+      width: 90px;
+      height: 90px;
+      margin-bottom: 1.5rem;
+      animation: fadeDown .8s ease both;
     }
 
-    .showcase-side {
-      display: grid;
-      gap: 12px;
-      align-items: end;
-      padding-bottom: 8px;
+    /* SVG peace-dove logo drawn inline */
+    .hero-logo svg { width: 100%; height: 100%; }
+
+    .hero-tagline {
+      position: relative;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .85rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.55);
+      margin-bottom: .75rem;
+      animation: fadeDown .8s .1s ease both;
     }
 
-    .showcase-card {
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 22px;
-      padding: 16px;
-      backdrop-filter: blur(8px);
+    header h1 {
+      position: relative;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -.01em;
+      animation: fadeDown .8s .2s ease both;
     }
 
-    .showcase-card h3 {
-      margin: 0 0 8px;
-      font-size: 1rem;
+    header h1 span { color: #6ec6ff; font-weight: 600; }
+
+    .hero-sub {
+      position: relative;
+      margin-top: 1.2rem;
+      font-size: 1.05rem;
+      color: rgba(255,255,255,.65);
+      max-width: 500px;
+      line-height: 1.6;
+      animation: fadeDown .8s .35s ease both;
     }
 
-    .section {
-      padding: 22px 0;
+    .hero-cta {
+      position: relative;
+      margin-top: 2.2rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeDown .8s .5s ease both;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: .75rem 2rem;
+      border-radius: 50px;
+      font-size: .9rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,.25); }
+    .btn-primary { background: var(--blue-light); color: #fff; }
+    .btn-outline  { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.5); }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .4rem;
+      color: rgba(255,255,255,.35);
+      font-size: .75rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .scroll-hint::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 40px;
+      background: rgba(255,255,255,.25);
+      animation: scrollLine 1.6s ease-in-out infinite;
+    }
+    @keyframes scrollLine { 0%,100% { opacity: 1; transform: scaleY(1); } 50% { opacity: .3; transform: scaleY(.5); } }
+
+    @keyframes fadeDown { from { opacity: 0; transform: translateY(-18px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ── NAV ─────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(14,24,37,.92);
+      backdrop-filter: blur(12px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: .9rem 3rem;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: .03em;
+    }
+
+    .nav-brand svg { width: 28px; height: 28px; }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: rgba(255,255,255,.65);
+      text-decoration: none;
+      font-size: .88rem;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: #6ec6ff; }
+
+    /* ── SECTION COMMONS ─────────────────────────────── */
+    section { padding: 6rem 2rem; }
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    .section-label {
+      font-size: .78rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--blue);
+      font-weight: 500;
+      margin-bottom: .6rem;
     }
 
     .section-title {
-      font-size: clamp(28px, 3vw, 48px);
-      margin: 0 0 20px;
-    }
-
-    .features {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-      margin-top: 10px;
-    }
-
-    .feature,
-    .product-card {
-      background: linear-gradient(180deg, rgba(33, 35, 68, 0.82), rgba(20, 22, 45, 0.78));
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(14px);
-    }
-
-    .feature {
-      padding: 22px;
-      min-height: 220px;
-    }
-
-    .icon {
-      width: 58px;
-      height: 58px;
-      border-radius: 18px;
-      display: grid;
-      place-items: center;
-      font-size: 1.7rem;
-      margin-bottom: 14px;
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.09);
-    }
-
-    .feature h3 {
-      margin: 0 0 10px;
-      font-size: 1.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400;
+      color: var(--dark);
       line-height: 1.15;
+      margin-bottom: 1.2rem;
     }
 
-    .feature p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.55;
+    .section-desc {
+      max-width: 540px;
+      line-height: 1.7;
+      color: var(--gray-400);
+      margin-bottom: 3rem;
     }
 
-    .catalog-head {
+    /* ── INFO STRIP ─────────────────────────────────── */
+    .info-strip {
+      background: var(--blue);
+      color: #fff;
+      padding: 2rem;
+    }
+    .info-strip .container {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-      margin-bottom: 18px;
       flex-wrap: wrap;
-    }
-
-    .search-wrap {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
+      gap: 2rem;
       align-items: center;
+      justify-content: space-around;
     }
+    .info-item { display: flex; align-items: center; gap: .8rem; }
+    .info-item svg { width: 28px; height: 28px; opacity: .85; flex-shrink: 0; }
+    .info-item p { font-size: .88rem; line-height: 1.5; }
+    .info-item strong { display: block; font-size: 1rem; }
 
-    .search-input {
-      min-width: 320px;
-      background: rgba(255,255,255,.07);
-      color: white;
-      border: 1px solid rgba(255,255,255,.09);
-      border-radius: 18px;
-      padding: 15px 16px;
-      outline: none;
-      font-size: 1rem;
-    }
+    /* ── ABOUT ───────────────────────────────────────── */
+    #about { background: var(--white); }
 
-    .search-input::placeholder { color: #c8c8db; }
-
-    .products {
+    .about-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
     }
 
-    .product-card {
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      min-height: 440px;
-    }
-
-    .product-media {
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.08);
+    .about-visual {
+      position: relative;
       border-radius: 20px;
-      min-height: 210px;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--blue-pale), #d4ecff);
+      height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .about-visual svg { width: 160px; height: 160px; opacity: .25; }
+
+    .stat-row {
       display: grid;
-      place-items: center;
-      padding: 18px;
-      margin-bottom: 14px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .stat-card {
+      background: var(--blue-pale);
+      border-radius: 16px;
+      padding: 1.5rem 1rem;
+      text-align: center;
+    }
+
+    .stat-card .num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--blue);
+      line-height: 1;
+    }
+
+    .stat-card p { font-size: .82rem; color: var(--gray-400); margin-top: .4rem; }
+
+    /* ── DOCTORS ─────────────────────────────────────── */
+    #doctors { background: var(--off-white); }
+
+    .doctors-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .doctor-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 2rem 1.5rem;
+      border: 1px solid var(--gray-100);
+      transition: transform .25s, box-shadow .25s, border-color .25s;
+      position: relative;
       overflow: hidden;
     }
 
-    .product-media img {
-      max-height: 185px;
-      width: auto;
-      object-fit: contain;
-      filter: drop-shadow(0 14px 20px rgba(0,0,0,.28));
+    .doctor-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      border-radius: 20px 20px 0 0;
     }
 
-    .product-card h3 {
-      font-size: 1.9rem;
-      line-height: 1.05;
-      margin: 6px 0 10px;
+    .doctor-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 50px rgba(26,111,196,.12);
+      border-color: var(--blue-pale);
     }
 
-    .product-card p {
-      margin: 0 0 14px;
-      color: var(--muted);
-      line-height: 1.55;
-      flex-grow: 1;
-    }
-
-    .product-bottom {
+    .specialty-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 14px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: auto;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+      font-size: 1.5rem;
     }
 
-    .price {
-      font-size: 2rem;
-      font-weight: 900;
-      letter-spacing: .3px;
+    .doctor-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: .3rem;
     }
 
-    .pill-btn {
-      background: linear-gradient(180deg, #54ce71, #379e50);
-      color: white;
-      border: 0;
-      border-radius: 999px;
-      padding: 13px 18px;
-      font-weight: 800;
-      cursor: pointer;
+    .specialty-label {
+      font-size: .78rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: .8rem;
     }
 
-    .footer-cta {
-      margin: 34px 0 60px;
-      padding: 24px;
+    .doctor-card p {
+      font-size: .85rem;
+      color: var(--gray-400);
+      line-height: 1.6;
+      margin-bottom: .4rem;
+    }
+
+    .contact-row {
+      display: flex;
+      flex-direction: column;
+      gap: .3rem;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--gray-100);
+    }
+
+    .contact-row a {
+      font-size: .82rem;
+      color: var(--blue);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+    }
+    .contact-row a:hover { text-decoration: underline; }
+
+    /* color variants */
+    .c-blue   { --accent: #1a6fc4; }
+    .c-teal   { --accent: #0d9488; }
+    .c-pink   { --accent: #c2185b; }
+    .c-indigo { --accent: #4527a0; }
+    .c-orange { --accent: #e65100; }
+    .c-green  { --accent: #2e7d32; }
+    .c-red    { --accent: #c62828; }
+    .c-purple { --accent: #6a1b9a; }
+    .c-navy   { --accent: #0d2b5e; }
+
+    .doctor-card::before { background: var(--accent); }
+    .specialty-icon { background: color-mix(in srgb, var(--accent) 12%, white); color: var(--accent); }
+    .specialty-label { color: var(--accent); }
+
+    /* ── SCHEDULE ────────────────────────────────────── */
+    #schedule { background: var(--white); }
+
+    .schedule-box {
+      background: linear-gradient(135deg, #0e1825, #163d6e);
       border-radius: 24px;
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border: 1px solid rgba(255,255,255,.1);
-      display: flex;
-      justify-content: space-between;
+      padding: 3rem;
+      color: #fff;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
       align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
     }
 
-    .footer-cta h3 {
-      margin: 0 0 6px;
-      font-size: clamp(24px, 2.2vw, 38px);
+    .schedule-box h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 1rem;
     }
 
-    .footer-cta p {
-      margin: 0;
-      color: var(--muted);
-      max-width: 680px;
+    .schedule-box p { color: rgba(255,255,255,.65); line-height: 1.7; }
+
+    .hours-table { width: 100%; border-collapse: collapse; }
+    .hours-table tr td {
+      padding: .8rem 1rem;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      font-size: .9rem;
+    }
+    .hours-table tr td:first-child { color: rgba(255,255,255,.6); }
+    .hours-table tr td:last-child { color: #fff; font-weight: 500; text-align: right; }
+    .hours-table tr:last-child td { border-bottom: none; }
+
+    /* ── FARMADERM ───────────────────────────────────── */
+    #farmaderm { background: var(--off-white); }
+
+    .farm-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 3rem;
+      border: 1px solid var(--gray-100);
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 3rem;
+      align-items: center;
     }
 
-    .hidden { display: none !important; }
-
-    @media (max-width: 1180px) {
-      .hero,
-      .features,
-      .products { grid-template-columns: 1fr 1fr; }
-      .hero { gap: 24px; }
+    .farm-icon {
+      background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+      border-radius: 20px;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
     }
 
-    @media (max-width: 860px) {
-      .nav { flex-wrap: wrap; }
-      .menu { order: 3; width: 100%; justify-content: center; }
-      .hero,
-      .features,
-      .products { grid-template-columns: 1fr; }
-      .search-input { min-width: 100%; width: 100%; }
-      .catalog-head { align-items: stretch; }
-      .product-showcase { min-height: auto; }
-      .showcase-grid { grid-template-columns: 1fr; }
+    .farm-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: .6rem;
+    }
+
+    .farm-card p { line-height: 1.7; color: var(--gray-400); margin-bottom: 1rem; }
+
+    .tag-list { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+    .tag {
+      padding: .35rem .9rem;
+      border-radius: 50px;
+      font-size: .78rem;
+      font-weight: 500;
+      background: var(--blue-pale);
+      color: var(--blue);
+    }
+
+    /* ── CONTACT ─────────────────────────────────────── */
+    #contact { background: var(--dark); color: #fff; }
+
+    #contact .section-title { color: #fff; }
+    #contact .section-desc { color: rgba(255,255,255,.5); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .contact-card {
+      background: rgba(255,255,255,.05);
+      border-radius: 20px;
+      padding: 2rem;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .contact-card h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      margin-bottom: 1.2rem;
+      color: #6ec6ff;
+    }
+
+    .contact-card p { font-size: .9rem; line-height: 1.8; color: rgba(255,255,255,.65); }
+    .contact-card a { color: #6ec6ff; text-decoration: none; }
+    .contact-card a:hover { text-decoration: underline; }
+
+    /* ── FOOTER ──────────────────────────────────────── */
+    footer {
+      background: #060e18;
+      color: rgba(255,255,255,.35);
+      text-align: center;
+      padding: 2rem;
+      font-size: .82rem;
+    }
+
+    footer span { color: rgba(255,255,255,.6); }
+
+    /* ── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 768px) {
+      nav { padding: .9rem 1.2rem; }
+      .nav-links { display: none; }
+      .about-grid, .schedule-box, .farm-card, .contact-grid { grid-template-columns: 1fr; }
+      .stat-row { grid-template-columns: 1fr 1fr; }
+      .info-strip .container { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
-  <div class="stars"></div>
 
-  <header class="container">
-    <nav class="nav">
-      <a href="#inicio" class="brand" aria-label="Sneak Clean">SNEAK<br>CLEAN</a>
+<!-- ── NAV ──────────────────────────────────────────── -->
+<nav>
+  <a class="nav-brand" href="#">
+    <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="40" cy="45" r="30" fill="#1a6fc4"/>
+      <path d="M40 18 C28 18 18 28 18 40 C18 55 30 62 40 75 C50 62 62 55 62 40 C62 28 52 18 40 18Z" fill="#1a6fc4" opacity=".5"/>
+      <path d="M32 30 C32 30 28 35 30 42 C32 49 38 52 40 75 C42 52 48 49 50 42 C52 35 48 30 48 30 C45 27 35 27 32 30Z" fill="white" opacity=".9"/>
+      <ellipse cx="56" cy="22" rx="6" ry="3" fill="white" transform="rotate(-30 56 22)" opacity=".85"/>
+      <ellipse cx="62" cy="16" rx="5" ry="2.5" fill="white" transform="rotate(-30 62 16)" opacity=".85"/>
+      <ellipse cx="50" cy="14" rx="5" ry="2.5" fill="white" transform="rotate(-15 50 14)" opacity=".85"/>
+      <ellipse cx="57" cy="10" rx="4.5" ry="2.2" fill="white" transform="rotate(-15 57 10)" opacity=".85"/>
+    </svg>
+    Médica de la Paz
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">Nosotros</a></li>
+    <li><a href="#doctors">Especialistas</a></li>
+    <li><a href="#schedule">Horarios</a></li>
+    <li><a href="#farmaderm">Farmacia</a></li>
+    <li><a href="#contact">Contacto</a></li>
+  </ul>
+</nav>
 
-      <div class="menu">
-        <a href="#inicio">Inicio</a>
-        <a href="#beneficios">Beneficios</a>
-        <a href="#catalogo">Catálogo</a>
-        <a href="#contacto">Contacto</a>
+<!-- ── HERO ──────────────────────────────────────────── -->
+<header>
+  <div class="ring ring-1"></div>
+  <div class="ring ring-2"></div>
+  <div class="ring ring-3"></div>
+
+  <div class="hero-logo">
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="56" r="38" fill="white" opacity=".12"/>
+      <circle cx="50" cy="56" r="30" fill="white" opacity=".15"/>
+      <path d="M50 24 C34 24 22 36 22 50 C22 68 36 77 50 95 C64 77 78 68 78 50 C78 36 66 24 50 24Z" fill="white" opacity=".6"/>
+      <path d="M40 38 C40 38 35 44 37 53 C39 62 47 65 50 95 C53 65 61 62 63 53 C65 44 60 38 60 38 C56 34 44 34 40 38Z" fill="white"/>
+      <ellipse cx="68" cy="28" rx="7" ry="3.5" fill="white" transform="rotate(-30 68 28)"/>
+      <ellipse cx="76" cy="20" rx="6" ry="3" fill="white" transform="rotate(-30 76 20)"/>
+      <ellipse cx="62" cy="18" rx="6" ry="3" fill="white" transform="rotate(-15 62 18)"/>
+      <ellipse cx="70" cy="12" rx="5.5" ry="2.7" fill="white" transform="rotate(-15 70 12)"/>
+    </svg>
+  </div>
+
+  <p class="hero-tagline">Unidad Médica Especializada · Colima, México</p>
+  <h1>Médica de<br/><span>la Paz</span></h1>
+  <p class="hero-sub">Centro médico multidisciplinario con especialistas certificados en una sola dirección. Tu salud, en las mejores manos.</p>
+
+  <div class="hero-cta">
+    <a class="btn btn-primary" href="#doctors">Ver Especialistas</a>
+    <a class="btn btn-outline" href="#contact">Agendar Cita</a>
+  </div>
+
+  <div class="scroll-hint">Scroll</div>
+</header>
+
+<!-- ── INFO STRIP ─────────────────────────────────────── -->
+<div class="info-strip">
+  <div class="container">
+    <div class="info-item">
+      <svg fill="none" viewBox="0 0 24 24" stroke="white"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+      <p><strong>Dirección</strong>Av. de la Paz #56, Col. Residencial Santa Bárbara, Colima, Col.</p>
+    </div>
+    <div class="info-item">
+      <svg fill="none" viewBox="0 0 24 24" stroke="white"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <p><strong>Horario</strong>Lun–Vie 10:00am–2:00pm y 4:00pm–8:00pm · Sáb 10:00am–2:00pm</p>
+    </div>
+    <div class="info-item">
+      <svg fill="none" viewBox="0 0 24 24" stroke="white"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 7V5z"/></svg>
+      <p><strong>Citas</strong>Tel. 312 323 4817 · 312 396 9395</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── ABOUT ──────────────────────────────────────────── -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual">
+        <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="40" cy="50" r="30" fill="#1a6fc4"/>
+          <path d="M40 20 C28 20 18 30 18 42 C18 57 30 64 40 77 C50 64 62 57 62 42 C62 30 52 20 40 20Z" fill="#1a6fc4"/>
+          <path d="M33 32 C33 32 29 37 31 44 C33 51 39 54 40 77 C41 54 47 51 49 44 C51 37 47 32 47 32 C44 29 36 29 33 32Z" fill="white"/>
+          <ellipse cx="54" cy="24" rx="6" ry="3" fill="white" transform="rotate(-30 54 24)"/>
+          <ellipse cx="60" cy="18" rx="5" ry="2.5" fill="white" transform="rotate(-30 60 18)"/>
+          <ellipse cx="48" cy="16" rx="5" ry="2.5" fill="white" transform="rotate(-15 48 16)"/>
+          <ellipse cx="55" cy="10" rx="4.5" ry="2.2" fill="white" transform="rotate(-15 55 10)"/>
+        </svg>
       </div>
-
-      <button class="cart-btn" id="openCartBtn" aria-label="Abrir carrito">
-        <span style="font-size:1.2rem">🛒</span>
-        <span>Carrito</span>
-        <span class="cart-count" id="cartCount">0</span>
-      </button>
-    </nav>
-  </header>
-
-  <main>
-    <section class="container hero" id="inicio">
       <div>
-        <h1 class="slogan">¡CUIDA TUS PASOS!</h1>
-        <h2>La solución <strong>profesional</strong> para limpieza de sneakers.</h2>
+        <p class="section-label">Quiénes somos</p>
+        <h2 class="section-title">Una unidad médica para toda la familia</h2>
+        <p class="section-desc">Médica de la Paz es un centro multidisciplinario que reúne a especialistas certificados en un mismo espacio, para que tú y tu familia reciban atención de primer nivel, cómoda y accesible, en Colima.</p>
+        <div class="stat-row">
+          <div class="stat-card">
+            <div class="num">9+</div>
+            <p>Especialidades médicas</p>
+          </div>
+          <div class="stat-card">
+            <div class="num">10+</div>
+            <p>Consultorios activos</p>
+          </div>
+          <div class="stat-card">
+            <div class="num">1</div>
+            <p>Dirección conveniente</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── DOCTORS ─────────────────────────────────────────── -->
+<section id="doctors">
+  <div class="container">
+    <p class="section-label">Nuestro equipo</p>
+    <h2 class="section-title">Especialistas certificados</h2>
+    <p class="section-desc">Contamos con médicos de alta especialidad en diversas ramas, todos con formación avalada y certificaciones nacionales.</p>
+
+    <div class="doctors-grid">
+
+      <!-- Dra. Laura Sevilla – Oftalmología -->
+      <div class="doctor-card c-blue">
+        <div class="specialty-icon">👁️</div>
+        <h3>Dra. Laura Sevilla</h3>
+        <p class="specialty-label">Cirujano Oftalmólogo</p>
+        <p>Sub especialidad en Cirugía de Catarata, Refractiva y Córnea.</p>
+        <p>Cédula: DGP63584625 · UDC-UDG</p>
+        <div class="contact-row">
+          <a href="tel:3123969395">📞 312 396 9395</a>
+          <a href="tel:3121316931">📱 312 131 6931</a>
+          <a href="mailto:lauraseviz@yahoo.com.mx">✉️ lauraseviz@yahoo.com.mx</a>
+        </div>
+      </div>
+
+      <!-- Dra. Alicia Jiménez – Pediatría -->
+      <div class="doctor-card c-teal">
+        <div class="specialty-icon">🧒</div>
+        <h3>Dra. Alicia Jiménez Álvarez</h3>
+        <p class="specialty-label">Pediatra Endocrinóloga</p>
+        <p>Especialista en endocrinología pediátrica, trastornos hormonales en niños y adolescentes.</p>
+        <div class="contact-row">
+          <a href="tel:3123234817">📞 312 323 4817</a>
+        </div>
+      </div>
+
+      <!-- Dr. Jorge Martínez – Periodoncia -->
+      <div class="doctor-card c-indigo">
+        <div class="specialty-icon">🦷</div>
+        <h3>Dr. Jorge Martínez Plaza</h3>
+        <p class="specialty-label">Periodoncia e Implantología</p>
+        <p>Clínica Orto &amp; Perio · Consultorio 7 y 11</p>
+        <div class="contact-row">
+          <a href="tel:3123234817">📞 312 323 4817</a>
+          <a href="tel:5529091847">📱 552 909 1847 (WhatsApp)</a>
+          <a href="mailto:dr.jorgemtz@hotmail.com">✉️ dr.jorgemtz@hotmail.com</a>
+          <a href="#">📷 @PerioimplantColima</a>
+        </div>
+      </div>
+
+      <!-- Dr. Juan Carlos Madrigal – Rehabilitación Oral -->
+      <div class="doctor-card c-navy">
+        <div class="specialty-icon">🦷</div>
+        <h3>Dr. Juan Carlos Madrigal Reyes</h3>
+        <p class="specialty-label">Rehabilitación Oral</p>
+        <p>Consultorio 1, 7 y 11 · Orto &amp; Perio</p>
+        <div class="contact-row">
+          <a href="tel:3123234817">📞 312 323 4817</a>
+        </div>
+      </div>
+
+      <!-- Dr. Carlos Chacón – Odontología -->
+      <div class="doctor-card c-purple">
+        <div class="specialty-icon">😁</div>
+        <h3>Dr. Carlos Chacón</h3>
+        <p class="specialty-label">Odontología Estética y Rehabilitación</p>
+        <p>Especialista en restauraciones estéticas, rehabilitación oral integral y prótesis dental.</p>
+        <div class="contact-row">
+          <a href="tel:3123234817">📞 312 323 4817</a>
+        </div>
+      </div>
+
+      <!-- Dr. Jorge González – Ortodoncia -->
+      <div class="doctor-card c-teal">
+        <div class="specialty-icon">📐</div>
+        <h3>Dr. Jorge González</h3>
+        <p class="specialty-label">Ortodoncia</p>
+        <p>Brackets, Invisalign®, blanqueamientos y limpiezas dentales · Consultorio 1</p>
+        <div class="contact-row">
+          <a href="tel:3123234591">📞 312 323 4591</a>
+          <a href="tel:3129432631">📱 312 943 2631</a>
+          <a href="mailto:dr.jorgeglez20@gmail.com">✉️ dr.jorgeglez20@gmail.com</a>
+        </div>
+      </div>
+
+      <!-- Dra. Edith Maciel – Odontopediatría -->
+      <div class="doctor-card c-pink">
+        <div class="specialty-icon">🧸</div>
+        <h3>Dra. Edith Maciel Tinocco</h3>
+        <p class="specialty-label">Odontopediatra</p>
+        <p>Consultorio 1, 7 y 11 · Orto &amp; Perio · Instituto Nacional de Pediatría</p>
+        <div class="contact-row">
+          <a href="tel:3123234817">📞 312 323 4817</a>
+        </div>
+      </div>
+
+      <!-- Dr. Luis Ramón Chávez – Gastroenterología -->
+      <div class="doctor-card c-orange">
+        <div class="specialty-icon">🫁</div>
+        <h3>Dr. Luis Ramón Chávez Orozco</h3>
+        <p class="specialty-label">Gastroenterología y Endoscopia</p>
+        <p>Endoscopia de tubo digestivo · También en Tecomán: Allende No. 317</p>
+        <div class="contact-row">
+          <a href="tel:3123231010">📞 312 323 1010 (Colima)</a>
+          <a href="tel:3131434604">📞 313 143 4604 (Tecomán)</a>
+          <a href="tel:3311298014">📱 331 129 8014 (WhatsApp)</a>
+        </div>
+      </div>
+
+      <!-- Dr. Joel Manzo – Coloproctología -->
+      <div class="doctor-card c-blue">
+        <div class="specialty-icon">🔬</div>
+        <h3>Dr. Joel Manzo Rincón</h3>
+        <p class="specialty-label">Coloproctólogo</p>
+        <p>Especialista en cirugía colorrectal, enfermedades del colon, recto y ano.</p>
+        <div class="contact-row">
+          <a href="tel:3123234817">📞 312 323 4817</a>
+        </div>
+      </div>
+
+      <!-- Dr. José Manuel López – Traumatología -->
+      <div class="doctor-card c-green">
+        <div class="specialty-icon">🦴</div>
+        <h3>Dr. José Manuel López Cruz</h3>
+        <p class="specialty-label">Traumatología y Ortopedia</p>
+        <p>Certificado por el Consejo Mexicano de Ortopedia y Traumatología · Reg. 9/4214/17</p>
+        <div class="contact-row">
+          <a href="tel:3123234817">📞 312 323 4817</a>
+        </div>
+      </div>
+
+      <!-- Dra. Jandy Sahagún – Dermatología -->
+      <div class="doctor-card c-red">
+        <div class="specialty-icon">🌿</div>
+        <h3>Dra. Jandy Sahagún Sánchez</h3>
+        <p class="specialty-label">Dermatóloga</p>
+        <p>Enfermedades de piel, pelo y uñas. Diagnóstico y tratamiento integral dermatológico.</p>
+        <div class="contact-row">
+          <a href="tel:3123234817">📞 312 323 4817</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── SCHEDULE ────────────────────────────────────────── -->
+<section id="schedule">
+  <div class="container">
+    <p class="section-label">Horarios de atención</p>
+    <h2 class="section-title">Siempre disponibles para ti</h2>
+    <div class="schedule-box">
+      <div>
+        <h2>Atención de lunes a sábado en dos turnos</h2>
+        <p>Nuestros consultorios están disponibles en horario matutino y vespertino para adaptarse a tu agenda. Los sábados atendemos en turno matutino.</p>
+      </div>
+      <table class="hours-table">
+        <tr>
+          <td>Lunes – Viernes</td>
+          <td>10:00 am – 2:00 pm</td>
+        </tr>
+        <tr>
+          <td>Lunes – Viernes</td>
+          <td>4:00 pm – 8:00 pm</td>
+        </tr>
+        <tr>
+          <td>Sábados</td>
+          <td>10:00 am – 2:00 pm</td>
+        </tr>
+        <tr>
+          <td>Domingos</td>
+          <td>Cerrado</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ── FARMADERM ───────────────────────────────────────── -->
+<section id="farmaderm">
+  <div class="container">
+    <p class="section-label">Servicios adicionales</p>
+    <h2 class="section-title">FarmaDerm en nuestras instalaciones</h2>
+    <p class="section-desc">Contamos con una farmacia dermatológica especializada justo en el mismo edificio para tu conveniencia.</p>
+    <div class="farm-card">
+      <div class="farm-icon">💊</div>
+      <div>
+        <h3>FarmaDerm – Farmacia Dermatológica</h3>
+        <p>Farmacia especializada en productos dermatológicos, prescripciones médicas y cuidado de la piel. Ubicada en la misma unidad médica para facilitar tu acceso a los medicamentos recetados por nuestros especialistas.</p>
+        <div class="tag-list">
+          <span class="tag">Medicamentos dermatológicos</span>
+          <span class="tag">Productos de cuidado de piel</span>
+          <span class="tag">Prescripciones especializadas</span>
+          <span class="tag">Cosméticos médicos</span>
+          <span class="tag">Protectores solares</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ────────────────────────────────────────── -->
+<section id="contact">
+  <div class="container">
+    <p class="section-label" style="color:#6ec6ff">Contáctanos</p>
+    <h2 class="section-title">¿Listo para agendar tu cita?</h2>
+    <p class="section-desc">Comunícate con nosotros por teléfono o visítanos directamente en nuestras instalaciones.</p>
+
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h4>📍 Dirección</h4>
         <p>
-          Somos una <strong>marca mexicana</strong> dedicada al cuidado de sneakers.
-          Nuestra solución <strong>no es tóxica</strong>, pensada en el mantenimiento continuo
-          de sneakers sin dañar sus materiales.
+          Av. de la Paz #56<br/>
+          Col. Residencial Santa Bárbara<br/>
+          Colima, Col., México
         </p>
-
-        <div class="hero-actions">
-          <a class="btn" href="#catalogo">Ver catálogo</a>
-          <button class="btn secondary" id="addKitHero">Agregar kit completo</button>
-        </div>
-
-        <div class="hero-badges">
-          <span>🚚 Envíos a todo México</span>
-          <span>🧴 Solución no tóxica</span>
-          <span>🛍️ Ideal para distribuidores</span>
-          <span>✨ Cuida tus pasos</span>
-        </div>
       </div>
-
-      <div class="product-showcase" aria-label="Productos Sneak Clean">
-        <div class="showcase-grid">
-          <div class="showcase-main">
-            <img src="images/bottle-250ml.png" alt="Frasco Sneak Clean 250 ml" />
-          </div>
-          <div class="showcase-side">
-            <div class="showcase-card">
-              <h3>Kit completo</h3>
-              <img src="images/kit-bag.png" alt="Kit completo Sneak Clean en bolsa con logo" />
-            </div>
-            <div class="showcase-card" style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; align-items:center;">
-              <img src="images/brush-soft.png" alt="Cepillo suave Sneak Clean" />
-              <img src="images/towel-microfiber.png" alt="Toalla de microfibra Sneak Clean" />
-            </div>
-          </div>
-        </div>
+      <div class="contact-card">
+        <h4>📞 Teléfonos</h4>
+        <p>
+          Citas generales: <a href="tel:3123234817">312 323 4817</a><br/>
+          Dra. Sevilla (Oftalmología): <a href="tel:3123969395">312 396 9395</a><br/>
+          Dr. Chávez (Gastro, WhatsApp): <a href="tel:3311298014">331 129 8014</a><br/>
+          Dr. Martínez (Periodoncia, WhatsApp): <a href="tel:5529091847">552 909 1847</a>
+        </p>
       </div>
-    </section>
-
-    <section class="container section" id="beneficios">
-      <h2 class="section-title">Por qué Sneak Clean es ideal para tu negocio</h2>
-      <div class="features">
-        <article class="feature">
-          <div class="icon">🧪</div>
-          <h3>Fórmula <strong>especializada</strong></h3>
-          <p>Solución no tóxica compatible con piel, gamuza, textiles y sintéticos para una limpieza segura y constante.</p>
-        </article>
-        <article class="feature">
-          <div class="icon">🧰</div>
-          <h3><strong>Kit completo</strong> listo para retail</h3>
-          <p>Incluye frasco de 250 ml, cepillo suave y toalla de microfibra. Se entrega en bolsa con logo Sneak Clean.</p>
-        </article>
-        <article class="feature">
-          <div class="icon">📈</div>
-          <h3>Alta rotación <strong>en retail</strong></h3>
-          <p>Producto visualmente atractivo y fácil de explicar al cliente final, ideal para tiendas especializadas en sneakers.</p>
-        </article>
-        <article class="feature">
-          <div class="icon">🇲🇽</div>
-          <h3>Marca <strong>mexicana</strong></h3>
-          <p>Diseñada para el mercado nacional, con enfoque en cuidado continuo, materiales delicados y presencia comercial moderna.</p>
-        </article>
+      <div class="contact-card">
+        <h4>🕐 Horarios</h4>
+        <p>
+          Lunes a Viernes: 10:00 am – 2:00 pm<br/>
+          Lunes a Viernes: 4:00 pm – 8:00 pm<br/>
+          Sábados: 10:00 am – 2:00 pm<br/>
+          Domingos: Cerrado
+        </p>
       </div>
-    </section>
-
-    <section class="container section" id="catalogo">
-      <div class="catalog-head">
-        <h2 class="section-title" style="margin:0;">Catálogo</h2>
-        <div class="search-wrap">
-          <input id="searchInput" class="search-input" type="text" placeholder="Buscar productos..." />
-          <button class="btn" id="searchBtn">Buscar</button>
-        </div>
+      <div class="contact-card">
+        <h4>📧 Correos electrónicos</h4>
+        <p>
+          Dra. Sevilla: <a href="mailto:lauraseviz@yahoo.com.mx">lauraseviz@yahoo.com.mx</a><br/>
+          Dr. Martínez: <a href="mailto:dr.jorgemtz@hotmail.com">dr.jorgemtz@hotmail.com</a><br/>
+          Dr. González: <a href="mailto:dr.jorgeglez20@gmail.com">dr.jorgeglez20@gmail.com</a>
+        </p>
       </div>
+    </div>
+  </div>
+</section>
 
-      <div class="products" id="productGrid">
-        <article class="product-card" data-name="sneak clean 250 ml frasco limpiador">
-          <div class="product-media">
-            <img src="images/bottle-250ml.png" alt="Sneak Clean 250 ml" />
-          </div>
-          <h3>Sneak Clean 250 ml</h3>
-          <p>Solución especializada para limpieza continua de sneakers sin dañar materiales delicados.</p>
-          <div class="product-bottom">
-            <span class="price">$0</span>
-            <button class="pill-btn add-to-cart" data-product="Sneak Clean 250 ml">Agregar al carrito</button>
-          </div>
-        </article>
+<!-- ── FOOTER ─────────────────────────────────────────── -->
+<footer>
+  <p>© 2026 <span>Médica de la Paz</span> · Av. de la Paz #56, Col. Residencial Santa Bárbara, Colima, Col. · Tel. <span>312 323 4817</span></p>
+</footer>
 
-        <article class="product-card" data-name="cepillo suave cerdas blancas">
-          <div class="product-media">
-            <img src="images/brush-soft.png" alt="Cepillo suave con cerdas blancas" />
-          </div>
-          <h3>Cepillo Suave</h3>
-          <p>Ideal para gamuza, malla y superficies delicadas. Limpia sin maltratar fibras ni acabados.</p>
-          <div class="product-bottom">
-            <span class="price">$0</span>
-            <button class="pill-btn add-to-cart" data-product="Cepillo Suave">Agregar al carrito</button>
-          </div>
-        </article>
-
-        <article class="product-card" data-name="toalla microfibra paño gris">
-          <div class="product-media">
-            <img src="images/towel-microfiber.png" alt="Toalla de microfibra gris" />
-          </div>
-          <h3>Toalla de Microfibra</h3>
-          <p>Paño premium para secar, retirar suciedad y dar acabado final durante el mantenimiento del sneaker.</p>
-          <div class="product-bottom">
-            <span class="price">$0</span>
-            <button class="pill-btn add-to-cart" data-product="Toalla de Microfibra">Agregar al carrito</button>
-          </div>
-        </article>
-
-        <article class="product-card" data-name="kit completo bolsa logo frasco cepillo toalla">
-          <div class="product-media">
-            <img src="images/kit-bag.png" alt="Kit completo con frasco, cepillo y toalla en bolsa con logo Sneak Clean" />
-          </div>
-          <h3>Kit Completo</h3>
-          <p>Incluye frasco 250 ml, cepillo suave y toalla de microfibra. Se envía en bolsa con logo Sneak Clean.</p>
-          <div class="product-bottom">
-            <span class="price">$0</span>
-            <button class="pill-btn add-to-cart" data-product="Kit Completo">Agregar al carrito</button>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="container">
-      <div class="footer-cta" id="contacto">
-        <div>
-          <h3>¿Listo para distribuir Sneak Clean?</h3>
-          <p>Producto ideal para tiendas de sneakers, boutiques y distribuidores que buscan una presentación moderna, un fondo visual impactante y una solución segura para el cuidado continuo del calzado.</p>
-        </div>
-        <a class="btn" href="mailto:ventas@sneakclean.mx">Contáctanos</a>
-      </div>
-    </section>
-  </main>
-
-  <script>
-    const cartCount = document.getElementById('cartCount');
-    const addButtons = document.querySelectorAll('.add-to-cart');
-    const addKitHero = document.getElementById('addKitHero');
-    const openCartBtn = document.getElementById('openCartBtn');
-    const searchInput = document.getElementById('searchInput');
-    const searchBtn = document.getElementById('searchBtn');
-    const productCards = document.querySelectorAll('.product-card');
-
-    let count = 0;
-
-    function updateCart(productName) {
-      count += 1;
-      cartCount.textContent = count;
-      if (productName) {
-        openCartBtn.setAttribute('title', productName + ' agregado');
-      }
-    }
-
-    addButtons.forEach((btn) => {
-      btn.addEventListener('click', () => updateCart(btn.dataset.product));
-    });
-
-    addKitHero.addEventListener('click', () => updateCart('Kit Completo'));
-
-    openCartBtn.addEventListener('click', () => {
-      alert('Carrito actual: ' + count + ' producto(s).\n\nMás adelante aquí puedes conectar una tienda real o WhatsApp.');
-    });
-
-    function filterProducts() {
-      const term = searchInput.value.toLowerCase().trim();
-      productCards.forEach((card) => {
-        const name = card.dataset.name;
-        const visible = name.includes(term) || term === '';
-        card.classList.toggle('hidden', !visible);
-      });
-    }
-
-    searchBtn.addEventListener('click', filterProducts);
-    searchInput.addEventListener('input', filterProducts);
-  </script>
 </body>
 </html>
